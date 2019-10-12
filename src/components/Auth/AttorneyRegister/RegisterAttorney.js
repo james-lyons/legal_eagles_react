@@ -1,10 +1,12 @@
 import React from 'react';
-import { button } from 'react-bootstrap';
+import { Button, ButtonToolbar } from 'react-bootstrap';
 import axios from 'axios';
-import API_URL from '../../constants';
+import RegisterAttorneyModal from './RegisterAttorneyModal'
+import API_URL from '../../../constants';
 
 class RegisterAttorney extends React.Component {
     state = {
+        modalShow: false,
         name: "",
         email: "",
         password: "",
@@ -34,10 +36,25 @@ class RegisterAttorney extends React.Component {
             });
     };
 
-    render() {
+    setModalShow = (modalState) => {
+        this.setState({
+            modalShow: modalState
+        });
+    };
 
+    render() {
         return (
             <>
+                <ButtonToolbar>
+                    <Button variant="primary" onClick = { () => this.setModalShow(true) }>
+                        For Attorneys
+                    </Button>
+
+                    <RegisterAttorneyModal
+                        show = { this.state.modalShow }
+                        onHide = { () => this.setModalShow(false) }
+                    />
+                </ButtonToolbar>
             </>
         );
     };

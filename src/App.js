@@ -4,15 +4,22 @@ import axios from 'axios';
 import Routes from './config/routes';
 import NavBar from './components/Layout/NavBar';
 import API_URL from './constants';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class App extends React.Component {
   state = {
-    currentUser: localStorage.getItem('uid')
+    currentUser: localStorage.getItem('uid'),
+    userType: ""
   };
 
   setCurrentUser = (userId) => {
     this.setState({ currentUser: userId });
     localStorage.setItem('uid', userId);
+  };
+
+  setCurrentUserType = (userType) => {
+    this.setState({ userType: userType });
   };
 
   logout = () => {
@@ -28,7 +35,15 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>Legal Eagles</h1>
+        <NavBar 
+          currentUser = { this.state.currentUser }
+          setCurrentUser = { this.setCurrentUser }
+          userType = { this.state.userType }
+        />
+        <Routes
+          currentUser = { this.state.currentUser }
+          userType = { this.state.userTpye }
+        />
       </div>
     );
   }

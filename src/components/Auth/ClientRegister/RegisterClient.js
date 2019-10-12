@@ -1,10 +1,12 @@
 import React from 'react';
-import { button } from 'react-bootstrap';
+import { Button, ButtonToolbar } from 'react-bootstrap';
 import axios from 'axios';
-import API_URL from '../../constants';
+import RegisterClientModal from './RegisterClientModal'
+import API_URL from '../../../constants';
 
 class RegisterClient extends React.Component {
     state = {
+        modalShow: false,
         name: "",
         email: "",
         password: "",
@@ -30,10 +32,25 @@ class RegisterClient extends React.Component {
             });
     };
 
-    render() {
+    setModalShow = (modalState) => {
+        this.setState({
+            modalShow: modalState
+        });
+    };
 
+    render() {
         return (
             <>
+                <ButtonToolbar>
+                    <Button variant="primary" onClick = { () => this.setModalShow(true) }>
+                        For Clients
+                    </Button>
+
+                    <RegisterClientModal
+                        show = { this.state.modalShow }
+                        onHide = { () => this.setModalShow(false) }
+                    />
+                </ButtonToolbar>
             </>
         );
     };
