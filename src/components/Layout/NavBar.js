@@ -5,6 +5,7 @@ import RegisterAttorney from '../Auth/AttorneyRegister/RegisterAttorney';
 import RegisterClient from '../Auth/ClientRegister/RegisterClient'
 import AttorneyLogin from '../Auth/AttorneyLogin/AttorneyLogin';
 import ClientLogin from '../Auth/ClientLogin/ClientLogin';
+import Register from '../Auth/Register'
 import './NavBar.css';
 
 const NavBar = ({ currentUser, setCurrentUser, logout }) => {
@@ -19,14 +20,8 @@ const NavBar = ({ currentUser, setCurrentUser, logout }) => {
                         <Nav.Link href="#AttorneySearch">Attorney Search</Nav.Link>
                     </Nav>
                     <Nav>
-                        <NavDropdown title="Login" id="collasible-nav-dropdown">
-                            <NavDropdown.Item><RegisterAttorney /></NavDropdown.Item>
-                            <NavDropdown.Item><RegisterClient /></NavDropdown.Item>
-                        </NavDropdown>
-                        <NavDropdown title="Register" id="collasible-nav-dropdown">
-                            <NavDropdown.Item><AttorneyLogin /></NavDropdown.Item>
-                            <NavDropdown.Item><ClientLogin /></NavDropdown.Item>
-                        </NavDropdown>
+                        <Register />
+                        {/* <Login /> */}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
