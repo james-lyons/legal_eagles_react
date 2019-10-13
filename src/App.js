@@ -20,10 +20,12 @@ class App extends React.Component {
 
   setCurrentUserType = (userType) => {
     this.setState({ userType: userType });
+    localStorage.setItem('user_type', userType)
   };
 
   logout = () => {
     localStorage.removeItem('uid');
+    localStorage.removeItem('user_type')
     axios.post(`${ API_URL }/auth/logout`, { withCredentials: true })
       .then(res => {
         this.setState({ currentUser: null });
@@ -38,11 +40,13 @@ class App extends React.Component {
         <NavBar 
           currentUser = { this.state.currentUser }
           setCurrentUser = { this.setCurrentUser }
+          setCurrentUserType = { this.setCurrentUserType }
           userType = { this.state.userType }
+          logout = { this.logout }
         />
         <Routes
           currentUser = { this.state.currentUser }
-          userType = { this.state.userTpye }
+          userType = { this.state.userType }
         />
       </div>
     );

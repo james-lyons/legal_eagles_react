@@ -5,11 +5,14 @@ import RegisterAttorney from '../Auth/AttorneyRegister/RegisterAttorney';
 import RegisterClient from '../Auth/ClientRegister/RegisterClient'
 import AttorneyLogin from '../Auth/AttorneyLogin/AttorneyLogin';
 import ClientLogin from '../Auth/ClientLogin/ClientLogin';
-import Register from '../Auth/Register'
+import Register from '../Auth/Register';
+import Login from '../Auth/Login';
 import './NavBar.css';
 
-const NavBar = ({ currentUser, setCurrentUser, logout }) => {
+const NavBar = ({ currentUser, userType, setCurrentUser, setCurrentUserType, logout }) => {
     
+    const userRole = localStorage.getItem('user_type');
+
     const links = (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -21,7 +24,11 @@ const NavBar = ({ currentUser, setCurrentUser, logout }) => {
                     </Nav>
                     <Nav>
                         <Register />
-                        {/* <Login /> */}
+                        <Login
+                            setCurrentUser = { setCurrentUser }
+                            setCurrentUserType = { setCurrentUserType }
+                            userType = { userType }
+                            />
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -37,9 +44,9 @@ const NavBar = ({ currentUser, setCurrentUser, logout }) => {
                     <Nav className="mr-auto">
                         <Nav.Link href="#AttorneySearch">Attorney Search</Nav.Link>
                     </Nav>
-                    <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+                    <NavDropdown title="Account" id="collasible-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Account Settings</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Logout</NavDropdown.Item>
+                        <NavDropdown.Item onClick = { logout }>Logout</NavDropdown.Item>
                     </NavDropdown>
                 </Navbar.Collapse>
             </Navbar>
@@ -57,15 +64,15 @@ const NavBar = ({ currentUser, setCurrentUser, logout }) => {
                     </Nav>
                     <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
                         <NavDropdown.Item href="#action/3.1">Account Settings</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.2">Logout</NavDropdown.Item>
+                        <NavDropdown.Item onClick = { logout }>Logout</NavDropdown.Item>
                     </NavDropdown>
                 </Navbar.Collapse>
             </Navbar>
         </> 
     );
 
-    const renderSwitch = (userType) => {
-        switch(userType) {
+    const renderSwitch = (userRole) => {
+        switch(userRole) {
             case 'attorney':
                 return attorneyLinks;
             case 'client':
@@ -77,7 +84,7 @@ const NavBar = ({ currentUser, setCurrentUser, logout }) => {
 
     return (
         <>
-            { renderSwitch(currentUser && currentUser.user_type) }
+            { renderSwitch(userRole) }
         </>
     );
 };

@@ -17,7 +17,7 @@ const ClientM = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     <div className="row">
-                        {/* { props.errors && props.errors.map((e, i) => (
+                        { props.errors && props.errors.map((e, i) => (
                             <div className="alert alert-danger alert-dismissible fade show"
                                 style={{width: '100%'}} role="alert" key={ i }>
                                 { e.message }
@@ -25,7 +25,7 @@ const ClientM = (props) => {
                                     <span aria-hidden="true">&times;</span>
                                 </button>    
                             </div>
-                        ))} */}
+                        ))}
                         <section id="register" className="ui form">
                             <form onSubmit={ props.handleSubmit }>
                                 <div className="field">
@@ -46,17 +46,6 @@ const ClientM = (props) => {
                                         id="email"
                                         name="email"
                                         value={ props.email }
-                                        onChange={ props.handleChange }
-                                        placeholder="example@example.com"
-                                    />
-                                </div>
-                                <div className="field">
-                                    <label htmlFor="address">Office Address</label>
-                                    <input
-                                        type="text"
-                                        id="address"
-                                        name="address"
-                                        value={ props.address }
                                         onChange={ props.handleChange }
                                         placeholder="example@example.com"
                                     />
