@@ -1,16 +1,23 @@
 import React from 'react';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import axios from 'axios';
-import OptionsM from './OptionsM';
-import LoginM from './LoginM';
+import AttorneyRegisterModal from '../../components/Auth/Register/AttorneyRegisterModal'
+import ClientRegisterModal from '../../components/Auth/Register/ClientRegisterModal'
+import OptionsModal from '../../components/Auth/OptionsModal'
 import API_URL from '../../constants';
 
-class Login extends React.Component {
+class Register extends React.Component {
     state = {
         modalShow: false,
         modalType: "",
+        name: "",
         email: "",
         password: "",
+        password2: "",
+        address: "",
+        zipcode: 0,
+        specialties: [],
+        reviews: [],
         errors: []
     };
 
@@ -22,56 +29,44 @@ class Login extends React.Component {
 
     handleAttorneySubmit = (event) => {
         event.preventDefault();
+        const name = this.state.name;
         const email = this.state.email;
         const password = this.state.password;
-        axios.post(`${ API_URL }/auth/attorneyLogin`, { email, password}, { withCredentials: true })
+        const password2 = this.state.password2;
+        const zipcode = this.state.zipcode;
+        const specialties = this.state.specialties;
+        axios.post(`${ API_URL }/auth/registerAttorney`,
+            { name, email, password, password2, zipcode, specialties},
+            { withCredentials: true })
             .then(res => {
-                this.props.setCurrentUser(res.data.id)
-                axios.get(`${ API_URL }/attorney/${ res.data.id }`,)
-                .then(res => {
-                    this.props.setCurrentUserType(res.data.data.user_type)
-                    window.location.reload();
-                })
+                window.location.reload();
+            })
                 .catch(err => {
                     console.log(err.response);
                     this.setState({
-                        errors: [err.response]
+                        errors: [err.response.data]
                     });
                 });
-            })
-            .catch(err => {
-                console.log(err.response);
-                this.setState({
-                    errors: [err.response]
-                });
-            });
     };
 
     handleClientSubmit = (event) => {
         event.preventDefault();
+        const name = this.state.name;
         const email = this.state.email;
         const password = this.state.password;
-        axios.post(`${ API_URL }/auth/clientLogin`, { email, password}, { withCredentials: true })
-            .then(res => {
-                this.props.setCurrentUser(res.data.id)
-                axios.get(`${ API_URL }/client/${ res.data.id }`,)
+        const password2 = this.state.password2;
+        axios.post(`${ API_URL }/auth/registerClient`,
+            { name, email, password, password2 },
+            { withCredentials: true })
                 .then(res => {
-                    this.props.setCurrentUserType(res.data.data.user_type)
                     window.location.reload();
                 })
                 .catch(err => {
-                    console.log(err.response);
+                    console.log(err);
                     this.setState({
-                        errors: [err.response]
+                        errors: [err.response.data]
                     });
                 });
-            })
-            .catch(err => {
-                console.log(err.response);
-                this.setState({
-                    errors: [err.response]
-                });
-            });
     };
 
     setModalShow = (modalState) => {
@@ -89,7 +84,7 @@ class Login extends React.Component {
     modalSwitch = (modalType) => {
         switch(modalType) {
             case 'attorney':
-                return <LoginM  
+                return <AttorneyRegisterModal   
                     show = { this.state.modalShow }
                     onHide = { () => this.setModalShow(false) }
                     selectModal = { this.selectModal }
@@ -99,7 +94,7 @@ class Login extends React.Component {
                     errors = { this.state.errors }
                 />;
             case 'client':
-                return <LoginM
+                return <ClientRegisterModal
                     show = { this.state.modalShow }
                     onHide = { () => this.setModalShow(false) }
                     selectModal = { this.selectModal }
@@ -108,7 +103,7 @@ class Login extends React.Component {
                     handleChange = { this.handleChange }
                 />;
             default:
-                return <OptionsM 
+                return <OptionsModal 
                     show = { this.state.modalShow }
                     onHide = { () => this.setModalShow(false) }
                     selectModal = { this.selectModal }
@@ -122,7 +117,7 @@ class Login extends React.Component {
             <>
                 <ButtonToolbar>
                     <Button variant="primary" onClick = { () => this.setModalShow(true) }>
-                        Login
+                        Register
                     </Button>
 
                     { this.modalSwitch(this.state.modalType) }
@@ -133,4 +128,4 @@ class Login extends React.Component {
     };
 };
 
-export default Login;
+export default Register;

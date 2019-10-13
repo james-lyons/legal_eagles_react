@@ -1,15 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import RegisterAttorney from '../Auth/AttorneyRegister/RegisterAttorney';
-import RegisterClient from '../Auth/ClientRegister/RegisterClient'
-import AttorneyLogin from '../Auth/AttorneyLogin/AttorneyLogin';
-import ClientLogin from '../Auth/ClientLogin/ClientLogin';
-import Register from '../Auth/Register';
-import Login from '../Auth/Login';
+import Register from '../../containers/AuthContainer/Register';
+import Login from '../../containers/AuthContainer/Login';
 import './NavBar.css';
 
-const NavBar = ({ currentUser, userType, setCurrentUser, setCurrentUserType, logout }) => {
+const NavBar = ({ userType, setCurrentUser, setCurrentUserType, logout }) => {
     
     const userRole = localStorage.getItem('user_type');
 

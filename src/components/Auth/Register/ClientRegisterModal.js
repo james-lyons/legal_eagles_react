@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
-const ClientM = (props) => {
+const ClientRegisterModal = (props) => {
     return (
         <>
             <Modal
@@ -16,7 +16,7 @@ const ClientM = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className="row">
+                <div className="row">
                         { props.errors && props.errors.map((e, i) => (
                             <div className="alert alert-danger alert-dismissible fade show"
                                 style={{width: '100%'}} role="alert" key={ i }>
@@ -46,28 +46,6 @@ const ClientM = (props) => {
                                         id="email"
                                         name="email"
                                         value={ props.email }
-                                        onChange={ props.handleChange }
-                                        placeholder="example@example.com"
-                                    />
-                                </div>
-                                <div className="field">
-                                    <label htmlFor="zipcode">Zipcode</label>
-                                    <input
-                                        type="text"
-                                        id="zipcode"
-                                        name="zipcode"
-                                        value={ props.zipcode }
-                                        onChange={ props.handleChange }
-                                        placeholder="example@example.com"
-                                    />
-                                </div>
-                                <div className="field">
-                                    <label htmlFor="specialties">Specialties</label>
-                                    <input
-                                        type="specialties"
-                                        id="specialties"
-                                        name="specialties"
-                                        value={ props.specialties }
                                         onChange={ props.handleChange }
                                         placeholder="example@example.com"
                                     />
@@ -113,7 +91,7 @@ const ClientM = (props) => {
                 </Modal.Footer>
             </Modal>
         </>
-    );
-};
+    )
+}
 
-export default ClientM;
+export default ClientRegisterModal;

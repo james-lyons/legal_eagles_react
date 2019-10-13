@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
-const OptionsM = (props) => {
+const OptionsModal = (props) => {
     return (
         <>
             <Modal
@@ -21,4 +21,4 @@ const OptionsM = (props) => {
     );
 };
 
-export default OptionsM;
+export default OptionsModal;
