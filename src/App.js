@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class App extends React.Component {
   state = {
     currentUser: localStorage.getItem('uid'),
-    userType: ""
+    userType: localStorage.getItem('user_type')
   };
 
   setCurrentUser = (userId) => {
@@ -38,10 +38,10 @@ class App extends React.Component {
     return (
       <div className="App">
         <NavBar 
+          userType = { this.state.userType }
           currentUser = { this.state.currentUser }
           setCurrentUser = { this.setCurrentUser }
           setCurrentUserType = { this.setCurrentUserType }
-          userType = { this.state.userType }
           logout = { this.logout }
         />
         <Routes

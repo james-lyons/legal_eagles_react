@@ -1,13 +1,13 @@
 import React from 'react';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import Home from '../components/Home/Home';
-import AttorneyProfileContainer from '../containers/AttorneyProfileContainer/AttorneyProfileContainer';
-import ClientProfileContainer from '../containers/ClientProfileContainer/ClientProfileContainer';
+import AttorneyProfile from '../containers/ProfileContainer/AttorneyProfile';
+import ClientProfile from '../containers/ProfileContainer/ClientProfile';
 
-export default withRouter(({ currentUser, userType }) => {
+export default withRouter(({ userType }) => {
     const AttorneyRoute = ({ component: Component, ...rest }) => (
         <Route { ...rest } render = {(props) => (
-            currentUser.user_type === 'attorney'
+            userType === 'attorney'
                 ? <Component { ...props } />
                 : <Redirect to = '/' />
         )} />
@@ -24,8 +24,9 @@ export default withRouter(({ currentUser, userType }) => {
     return (
         <Switch>
             <Route exact path = '/' component = { Home } />
-            <AttorneyRoute path = '/profile' component = { AttorneyProfileContainer } />
-            <ClientRoute path = '/profile' component = { ClientProfileContainer } />
+            <Route path = '/attorney_search' />
+            <AttorneyRoute path = '/attorney_profile' component = { AttorneyProfile } />
+            <ClientRoute path = '/client_profile' component = { ClientProfile } />
         </Switch>
     );
 });

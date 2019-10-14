@@ -1,23 +1,14 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { tsPropertySignature } from '@babel/types';
 
-const LoginModal = (props) => {
+
+const ClientProfileComponent = (props) => {
     return (
         <>
-            <Modal
-                {...props}
-                size="lg"
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        Please fill out all of the following
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <div className="row">
-                        {/* { props.errors && props.errors.map((e, i) => (
+            <div>
+                <p>Hello, {props.name}</p>
+                <div>
+                        { props.errors && props.errors.map((e, i) => (
                             <div className="alert alert-danger alert-dismissible fade show"
                                 style={{width: '100%'}} role="alert" key={ i }>
                                 { e.message }
@@ -25,10 +16,21 @@ const LoginModal = (props) => {
                                     <span aria-hidden="true">&times;</span>
                                 </button>    
                             </div>
-                        ))} */}
-                        <section id="login" className="ui form">
-                            <form onSubmit={ props.handleSubmit}>
-                                <div className="field">
+                        ))}
+                        <section id="Profile">
+                            <form onSubmit = { props.onProfileEdit }>
+                                {/* <div className="field">
+                                    <label htmlFor = "name">Full Name</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        value={ props.name }
+                                        onChange = { props.handleChange }
+                                        placeholder = "James Lyons"
+                                    />
+                                </div> */}
+                                <div>
                                     <label htmlFor="email">Email</label>
                                     <input
                                         type="text"
@@ -36,10 +38,10 @@ const LoginModal = (props) => {
                                         name="email"
                                         value={ props.email }
                                         onChange={ props.handleChange }
-                                        placeholder="example@example.com"
+                                        placeholder="Tangerines27@example.com"
                                     />
                                 </div>
-                                <div className="field">
+                                <div>
                                     <label htmlFor="password">Password</label>
                                     <input
                                         type="password"
@@ -47,26 +49,33 @@ const LoginModal = (props) => {
                                         name="password"
                                         value={ props.password }
                                         onChange={ props.handleChange }
-                                        placeholder="Password"
+                                        placeholder="Hippopotamous39"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="password">Confirm Password</label>
+                                    <input
+                                        type="password"
+                                        id="password2"
+                                        name="password2"
+                                        value={ props.password2 }
+                                        onChange={ props.handleChange }
+                                        placeholder="Hippopotamous39"
                                     />
                                 </div>
                                 <br/>                              
                                 <div className="actions">
                                     <button type="submit" className="ui positive right labeled icon button">
-                                        Login
+                                        Submit Changes
                                         <i className="checkmark icon"></i>
                                     </button>
                                 </div>
                             </form>
                         </section>
                     </div>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick = { props.onHide }>Close</Button>
-                </Modal.Footer>
-            </Modal>
+            </div>
         </>
-    );
-};
+    )
+}
 
-export default LoginModal;
+export default ClientProfileComponent;

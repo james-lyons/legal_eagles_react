@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import Register from '../../containers/AuthContainer/Register';
 import Login from '../../containers/AuthContainer/Login';
@@ -12,7 +11,7 @@ const NavBar = ({ userType, setCurrentUser, setCurrentUserType, logout }) => {
     const links = (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Navbar.Brand href="#home">No Sign in</Navbar.Brand>
+                <Navbar.Brand href="/">Legal Eagles</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
@@ -34,14 +33,14 @@ const NavBar = ({ userType, setCurrentUser, setCurrentUserType, logout }) => {
     const attorneyLinks = (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Navbar.Brand href="#home">Attorney</Navbar.Brand>
+                <Navbar.Brand href="/">Legal Eagles</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
                         <Nav.Link href="#AttorneySearch">Attorney Search</Nav.Link>
                     </Nav>
                     <NavDropdown title="Account" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Account Settings</NavDropdown.Item>
+                        <NavDropdown.Item href = "/attorney_profile">Account Settings</NavDropdown.Item>
                         <NavDropdown.Item onClick = { logout }>Logout</NavDropdown.Item>
                     </NavDropdown>
                 </Navbar.Collapse>
@@ -52,14 +51,14 @@ const NavBar = ({ userType, setCurrentUser, setCurrentUserType, logout }) => {
     const clientLinks = (
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Navbar.Brand href="#home">Client</Navbar.Brand>
+                <Navbar.Brand href="/">Legal Eagles</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
                         <Nav.Link href="#AttorneySearch">Attorney Search</Nav.Link>
                     </Nav>
-                    <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Account Settings</NavDropdown.Item>
+                    <NavDropdown title="Account" id="collasible-nav-dropdown">
+                        <NavDropdown.Item href = "/client_profile">Account Settings</NavDropdown.Item>
                         <NavDropdown.Item onClick = { logout }>Logout</NavDropdown.Item>
                     </NavDropdown>
                 </Navbar.Collapse>
