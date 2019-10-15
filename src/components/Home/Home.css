@@ -1,0 +1,22 @@
+.homepage {
+    width: 100vw;
+    height: 92.75vh;
+}
+
+.homepage-header {
+    height: 100%;
+    background-image: url("https://landwehrlawmn.com/wp-content/uploads/2015/03/law-wallpapers-hd-1080p-1920x1080-desktop-02.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-position: center; */
+    background-color: black;
+}
+
+.search_bar {
+    width: 50%;
+}
+/* 
+.homepage-footer {
+    height: 27.5%;
+    background-color: lightcoral;
+} */

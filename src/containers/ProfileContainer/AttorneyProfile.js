@@ -1,26 +1,30 @@
 import React from 'react';
-import Axios from 'axios';
+import axios from 'axios';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import API_URL from '../../constants';
 import AttorneyProfileComponent from '../../components/Profiles/AttorneyProfile/AttorneyProfileComponent';
 
 class AttorneyProfile extends React.Component {
     state = {
-        modalShow: false,
+        name: '',
         email: "",
+        zipcode: 0,
+        specialties: [""],
         password: "",
         password2: "",
         errors: []
     };
 
-    componentDidmount = () => {
+    componentDidMount = () => {
         const currentUser = localStorage.getItem('uid');
-        Axios.get(`${ API_URL }/attorney/${ currentUser }`, { withCredentials: true })
+        axios.get(`${ API_URL }/attorney/${ currentUser }`, { withCredentials: true })
             .then(res => {
                 this.setState({
                     name: res.data.data.name,
                     email: res.data.data.email,
-                    password: res.data.data.password
+                    password: res.data.data.password,
+                    zipcode: res.data.data.zipcode,
+                    specialties: res.data.data.specialties
                 })
             })
             .catch(err => {
@@ -36,34 +40,38 @@ class AttorneyProfile extends React.Component {
         const email = this.state.email;
         const password = this.state.password;
         const password2 = this.state.password2;
-        Axios.put(`${ API_URL }/attorney/${ currentUser }`, {}, { withCredentials: true })
-            .then(res => {
-                console.log(res)
-            })
-            .catch(err => {
-                console.log(err);
-                this.setState({
-                    errors: err,
+        axios.put(`${ API_URL }/attorney/${ currentUser }`,
+            { name: name, email: email, password: password },
+            { withCredentials: true })
+                .then(res => {
+                    console.log(res)
                 })
-            })
-    }
-
-    setModalShow = (modalState) => {
-        this.setState({
-            modalShow: modalState
-        });
+                .catch(err => {
+                    console.log(err);
+                    this.setState({
+                        errors: err,
+                    });
+                });
     };
 
-    selectModal = (event) => {
+    handleChange = (event) => {
         this.setState({
-            modalType: event.target.value
+            [event.target.name]: event.target.value
         });
+        console.log(this.state)
     };
 
     render() {
         return (
             <>
-                <AttorneyProfileComponent />
+                <AttorneyProfileComponent
+                    name = { this.state.name }
+                    email = { this.state.email }
+                    zipcode = { this.state.zipcode }
+                    zpecialties = { this.state.specialties }
+                    handleChange = { this.handleChange }
+                    onProfileEdit = { this.onProfileEdit }
+                />
             </>
         );
     };
