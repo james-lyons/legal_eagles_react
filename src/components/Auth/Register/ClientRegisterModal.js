@@ -1,5 +1,6 @@
 import React from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Form, Col, InputGroup } from 'react-bootstrap';
+import '../Auth.css';
 
 const ClientRegisterModal = (props) => {
     return (
@@ -16,7 +17,7 @@ const ClientRegisterModal = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <div className="row">
+                    <div className="row">
                         { props.errors && props.errors.map((e, i) => (
                             <div className="alert alert-danger alert-dismissible fade show"
                                 style={{width: '100%'}} role="alert" key={ i }>
@@ -27,62 +28,67 @@ const ClientRegisterModal = (props) => {
                             </div>
                         ))}
                         <section id="register" className="ui form">
-                            <form onSubmit={ props.handleSubmit }>
-                                <div className="field">
-                                    <label htmlFor="name">Full Name</label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        value={ props.name }
-                                        onChange={ props.handleChange }
-                                        placeholder="Example: James Lyons"
+                            <Form noValidate validated={ props.validated } onSubmit={ props.handleSubmit }>
+                                <Form.Row>
+                                    <Form.Group as={Col} md="6" controlId="validationCustom01">
+                                        <Form.Label>First name</Form.Label>
+                                        <Form.Control
+                                            required
+                                            type="text"
+                                            placeholder="First name"
+                                        />
+                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" controlId="validationCustom02">
+                                        <Form.Label>Last name</Form.Label>
+                                        <Form.Control
+                                            required
+                                            type="text"
+                                            placeholder="Last name"
+                                        />
+                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                    </Form.Group>                               
+                                </Form.Row>
+                                <Form.Row>
+                                    <Form.Group as={Col} md="12" controlId="email">
+                                        <Form.Label>Email</Form.Label>
+                                        <Form.Control
+                                            required
+                                            type="text"
+                                            placeholder="email"
+                                        />
+                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                    </Form.Group>
+                                </Form.Row>
+                                <Form.Row>
+                                    <Form.Group as={Col} md="6" controlId="password1">
+                                        <Form.Label>Password</Form.Label>
+                                        <Form.Control
+                                            required
+                                            type="password"
+                                            placeholder="Password"
+                                        />
+                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" controlId="password2">
+                                        <Form.Label>Confirm Password</Form.Label>
+                                        <Form.Control
+                                            required
+                                            type="password"
+                                            placeholder="Confirm Password"
+                                        />
+                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                    </Form.Group>
+                                </Form.Row>
+                                <Form.Group>
+                                    <Form.Check
+                                    required
+                                    label="Agree to terms and conditions"
+                                    feedback="You must agree before submitting."
                                     />
-                                </div>
-                                <div className="field">
-                                    <label htmlFor="email">Email</label>
-                                    <input
-                                        type="text"
-                                        id="email"
-                                        name="email"
-                                        value={ props.email }
-                                        onChange={ props.handleChange }
-                                        placeholder="example@example.com"
-                                    />
-                                </div>
-                                <div className="field">
-                                    <label htmlFor="password">Password</label>
-                                    <input
-                                        type="password"
-                                        id="password"
-                                        name="password"
-                                        value={ props.password }
-                                        onChange={ props.handleChange }
-                                        placeholder="Password"
-                                    />
-                                </div>
-                                <div className="field">
-                                    <label htmlFor="password">Confirm Password</label>
-                                    <input
-                                        type="password"
-                                        id="password2"
-                                        name="password2"
-                                        value={ props.password2 }
-                                        onChange={ props.handleChange }
-                                        placeholder="Password"
-                                    />
-                                </div>
-                                <br/>                              
-                                <div className="actions">
-                                    <div className="ui black deny button">
-                                        Cancel
-                                    </div>
-                                    <button type="submit" className="ui positive right labeled icon button">
-                                        Register
-                                        <i className="checkmark icon"></i>
-                                    </button>
-                                </div>
-                            </form>
+                                </Form.Group>
+                                <Button type="submit">Submit</Button>
+                            </Form>
                         </section>
                     </div>
                 </Modal.Body>
@@ -91,7 +97,7 @@ const ClientRegisterModal = (props) => {
                 </Modal.Footer>
             </Modal>
         </>
-    )
-}
+    );
+};
 
 export default ClientRegisterModal;

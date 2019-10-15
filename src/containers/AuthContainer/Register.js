@@ -5,19 +5,20 @@ import AttorneyRegisterModal from '../../components/Auth/Register/AttorneyRegist
 import ClientRegisterModal from '../../components/Auth/Register/ClientRegisterModal'
 import OptionsModal from '../../components/Auth/OptionsModal'
 import API_URL from '../../constants';
+import { validate } from '@babel/types';
 
 class Register extends React.Component {
     state = {
         modalShow: false,
+        validated: false,
         modalType: "",
         name: "",
         email: "",
+        zipcode: 0,
+        reviews: [],
+        specialties: [],
         password: "",
         password2: "",
-        address: "",
-        zipcode: 0,
-        specialties: [],
-        reviews: [],
         errors: []
     };
 
@@ -69,6 +70,21 @@ class Register extends React.Component {
                 });
     };
 
+    handleValidation = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        };    
+        this.setValidated(true);
+      };
+
+    setValidated = (validated) => {
+        this.setState({
+            validated: validated
+        });
+    };
+
     setModalShow = (modalState) => {
         this.setState({
             modalShow: modalState
@@ -91,6 +107,7 @@ class Register extends React.Component {
                     modalSwitch = { this.modalSwitch }
                     handleSubmit = { this.handleAttorneySubmit }
                     handleChange = { this.handleChange }
+                    handleValidation = { this.handleValidation }
                     errors = { this.state.errors }
                 />;
             case 'client':

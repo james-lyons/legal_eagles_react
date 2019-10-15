@@ -2,3 +2,12 @@
     top: 90% !important;
     left: -52% !important;
 }
+
+.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+p {
+    font-size: .8em;
+}
