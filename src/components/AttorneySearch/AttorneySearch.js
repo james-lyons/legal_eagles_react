@@ -1,0 +1,118 @@
+import React from 'react';
+import axios from 'axios';
+import { Form, Col, Button } from 'react-bootstrap';
+import API_URL from '../../constants';
+
+class AttorneySearch extends React.Component {
+    state = {
+        specialty: "",
+        zipcode: "",
+        results: [],
+        errors: []
+    };
+
+    attorneySearch = (event) => {
+        event.preventDefault();
+        const specialty = this.state.specialty;
+        const zipcode = this.state.zipcode;
+        axios.get(`${ API_URL }/attorney/search`,
+            {params: {specialty: specialty, zipcode: zipcode}},
+            { withCredentials: true })
+                .then(res => { 
+                    this.setState({
+                        results: res.data.data
+                    });
+                    console.log(this.state)
+                })
+                .catch(err => {
+                    console.log(err)
+                    this.setState({
+                        errors: err
+                    });
+                });
+    };
+
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+        console.log(this.state)
+    };
+
+    attorneyMapper = (attorneys) => {
+        const attorneyArray = attorneys.map(attorney => 
+            <div className="attorney">
+                <img src={attorney.profile_image} alt="profile-image"/>
+                <h1>{ attorney.first_name }</h1>
+                <h1>{ attorney.last_name }</h1>
+                <h1>{ attorney.city, attorney.state }</h1>
+                <h1>{ attorney.specialty }</h1>
+                <h1>Reviews: { attorney.reviews }</h1>
+                <h1>{ attorney.bio}</h1>
+            </div>
+        );
+        return attorneyArray;
+    };
+
+    render() {
+        return (
+            <>
+                <div className="search_bar justify-content-md-center">
+                    <Form onSubmit={ this.attorneySearch} className="search-form justify-content-md-center">
+                        <Form.Row className="justify-content-md-center">
+                        <Form.Group as={Col} md="11" controlId="specialty">
+                                <Form.Label className="search-bar-header">Search by Specialty And / Or Zipcode</Form.Label>
+                                <Form.Control
+                                    name="specialty"
+                                    onChange={ this.handleChange }
+                                    as="select"
+                                >
+                                    <option value="">Select</option>
+                                    <option value="Admiralty">Admiralty Law</option>
+                                    <option value="Animal Rights">Animal Rights Law</option>
+                                    <option value="Civil Rights">Civil Rights Law</option>
+                                    <option value="Constitutional">Constitutional Law</option>
+                                    <option value="Contract">Contract Law</option>
+                                    <option value="Corporate">Corporate Law</option>
+                                    <option value="Criminal">Criminal Law</option>
+                                    <option value="Education">Education Law</option>
+                                    <option value="Employment and Labor">Employment and Labor Law</option>
+                                    <option value="Enviornment and Natural Resources">Enviornment and Natural Resources Law</option>
+                                    <option value="Family and Juvenile">Family and Juvenile Law</option>
+                                    <option value="Health">Health Law</option>
+                                    <option value="Immigration">Immigration Law</option>
+                                    <option value="Intellectural Property">Intellectual Property Law</option>
+                                    <option value="International">International Law</option>
+                                    <option value="Municipal">Municipal Law</option>
+                                    <option value="Real Estate">Real Estate Law</option>
+                                    <option value="Securities">Securities Law</option>
+                                    <option value="Sports and Entertainment">Sports and Entertainment Law</option>
+                                    <option value="Tax">Tax Law</option>
+                                    <option value="Tort">Tort Law</option>
+                                    <option value="Trust and Estate">Trust and Estate Law</option>
+                                </Form.Control>
+                            </Form.Group>
+                        </Form.Row>
+                        <Form.Row className="justify-content-md-center">
+                            <Form.Group as={Col} md="11" controlId="zipcode">
+                                <Form.Control
+                                    type="zipcode"
+                                    name="zipcode"
+                                    onChange={ this.handleChange}
+                                    placeholder="zipcode"
+                                />
+                                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                            </Form.Group>
+                        </Form.Row>
+                        <Button className="home-search-button" type="submit">Submit</Button>
+                    </Form>
+                </div>
+                <div>
+                    { this.state.results && this.attorneyMapper(this.state.results) }
+                </div>
+            </>
+        );
+    };
+};
+
+export default AttorneySearch;

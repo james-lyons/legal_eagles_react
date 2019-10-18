@@ -5,20 +5,23 @@ import AttorneyRegisterModal from '../../components/Auth/Register/AttorneyRegist
 import ClientRegisterModal from '../../components/Auth/Register/ClientRegisterModal'
 import OptionsModal from '../../components/Auth/OptionsModal'
 import API_URL from '../../constants';
-import { validate } from '@babel/types';
 
 class Register extends React.Component {
     state = {
         modalShow: false,
         validated: false,
         modalType: "",
-        name: "",
+        first_name: "",
+        last_name: "",
         email: "",
+        city: "",
+        state: "",
         zipcode: 0,
-        reviews: [],
-        specialties: [],
+        specialty: "",
+        profile_image: "https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg",
         password: "",
         password2: "",
+        reviews: [],
         errors: []
     };
 
@@ -26,18 +29,32 @@ class Register extends React.Component {
         this.setState({
             [event.target.name]: event.target.value
         });
+        console.log(this.state)
     };
+
+    handleImageChange = (event) => {
+        console.log(event)
+        this.setState({
+          profile_image: URL.createObjectURL(event.target.files[0])
+        });
+        console.log(this.state.profile_image)
+      };
 
     handleAttorneySubmit = (event) => {
         event.preventDefault();
-        const name = this.state.name;
+        const first_name = this.state.first_name;
+        const last_name = this.state.last_name
         const email = this.state.email;
+        const city = this.state.city;
+        const state = this.state.state;
+        const zipcode = this.state.zipcode;
+        const specialty = this.state.specialty;
+        const profile_image = this.state.profile_image
         const password = this.state.password;
         const password2 = this.state.password2;
-        const zipcode = this.state.zipcode;
-        const specialties = this.state.specialties;
         axios.post(`${ API_URL }/auth/registerAttorney`,
-            { name, email, password, password2, zipcode, specialties},
+            { first_name, last_name, email, city, state, zipcode,
+            specialty, profile_image, password, password2 },
             { withCredentials: true })
             .then(res => {
                 window.location.reload();
@@ -45,19 +62,20 @@ class Register extends React.Component {
                 .catch(err => {
                     console.log(err.response);
                     this.setState({
-                        errors: [err.response.data]
+                        errors: [err.response]
                     });
                 });
     };
 
     handleClientSubmit = (event) => {
         event.preventDefault();
-        const name = this.state.name;
+        const first_name = this.state.first_name;
+        const last_name = this.state.last_name;
         const email = this.state.email;
         const password = this.state.password;
         const password2 = this.state.password2;
         axios.post(`${ API_URL }/auth/registerClient`,
-            { name, email, password, password2 },
+            { first_name, last_name, email, password, password2 },
             { withCredentials: true })
                 .then(res => {
                     window.location.reload();
@@ -65,7 +83,7 @@ class Register extends React.Component {
                 .catch(err => {
                     console.log(err);
                     this.setState({
-                        errors: [err.response.data]
+                        errors: [err.response]
                     });
                 });
     };
@@ -107,7 +125,9 @@ class Register extends React.Component {
                     modalSwitch = { this.modalSwitch }
                     handleSubmit = { this.handleAttorneySubmit }
                     handleChange = { this.handleChange }
+                    handleImageChange = { this.handleImageChange }
                     handleValidation = { this.handleValidation }
+                    profile_image = { this.state.profile_image }
                     errors = { this.state.errors }
                 />;
             case 'client':

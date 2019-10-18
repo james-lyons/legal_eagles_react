@@ -3,11 +3,24 @@
     left: -52% !important;
 }
 
-.row {
+#auth-row {
     margin-left: 0 !important;
-    margin-right: 0 !important;
+    margin-right: 0 !important;   
 }
 
 p {
     font-size: .8em;
+}
+
+#profile-image {
+    width: 20em;
+}
+
+/* Media Queries */
+
+@media (max-width: 700px) { 
+    .dropdown-menu {
+        top: 100% !important;
+        left: 0% !important;
+    }
 }

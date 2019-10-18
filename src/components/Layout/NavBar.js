@@ -32,7 +32,7 @@ const NavBar = ({ userType, setCurrentUser, setCurrentUserType, logout }) => {
 
     const attorneyLinks = (
         <>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
                 <Navbar.Brand href="/">Legal Eagles</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">

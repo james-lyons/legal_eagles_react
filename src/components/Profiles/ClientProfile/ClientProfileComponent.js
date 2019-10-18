@@ -1,13 +1,14 @@
 import React from 'react';
-import { tsPropertySignature } from '@babel/types';
+import { Form, Col, Button } from 'react-bootstrap';
+import './ClientProfile.css';
 
 
 const ClientProfileComponent = (props) => {
     return (
         <>
             <div>
-                <p>Hello, {props.name}</p>
-                <div>
+                <h1 className="client-profile-h1">Hello, {props.name}</h1>
+                <div className="row" id="client-profile-container-row">
                         { props.errors && props.errors.map((e, i) => (
                             <div className="alert alert-danger alert-dismissible fade show"
                                 style={{width: '100%'}} role="alert" key={ i }>
@@ -17,61 +18,70 @@ const ClientProfileComponent = (props) => {
                                 </button>    
                             </div>
                         ))}
-                        <section id="Profile">
-                            <form onSubmit = { props.onProfileEdit }>
-                                {/* <div className="field">
-                                    <label htmlFor = "name">Full Name</label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        value={ props.name }
-                                        onChange = { props.handleChange }
-                                        placeholder = "James Lyons"
-                                    />
-                                </div> */}
-                                <div>
-                                    <label htmlFor="email">Email</label>
-                                    <input
-                                        type="text"
-                                        id="email"
-                                        name="email"
-                                        value={ props.email }
-                                        onChange={ props.handleChange }
-                                        placeholder="Tangerines27@example.com"
-                                    />
-                                </div>
-                                <div>
-                                    <label htmlFor="password">Password</label>
-                                    <input
-                                        type="password"
-                                        id="password"
-                                        name="password"
-                                        value={ props.password }
-                                        onChange={ props.handleChange }
-                                        placeholder="Hippopotamous39"
-                                    />
-                                </div>
-                                <div>
-                                    <label htmlFor="password">Confirm Password</label>
-                                    <input
-                                        type="password"
-                                        id="password2"
-                                        name="password2"
-                                        value={ props.password2 }
-                                        onChange={ props.handleChange }
-                                        placeholder="Hippopotamous39"
-                                    />
-                                </div>
-                                <br/>                              
-                                <div className="actions">
-                                    <button type="submit" className="ui positive right labeled icon button">
-                                        Submit Changes
-                                        <i className="checkmark icon"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </section>
+                            <Form noValidate validated={ props.validated } onSubmit={ props.handleSubmit }>
+                                <Form.Row className="client-profile-row">
+                                    <Form.Group as={Col} md="6" controlId="first_name">
+                                        <Form.Label>First name</Form.Label>
+                                        <Form.Control
+                                            required
+                                            type="text"
+                                            name="first_name"
+                                            onChange = { props.handleChange}
+                                            placeholder="First name"
+                                        />
+                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" controlId="last_name">
+                                        <Form.Label>Last name</Form.Label>
+                                        <Form.Control
+                                            required
+                                            type="text"
+                                            name="last_name"
+                                            onChange = { props.handleChange}
+                                            placeholder="Last name"
+                                        />
+                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                    </Form.Group>                               
+                                </Form.Row>
+                                <Form.Row className="client-profile-row">
+                                    <Form.Group as={Col} md="12" controlId="email">
+                                        <Form.Label>Email</Form.Label>
+                                        <Form.Control
+                                            required
+                                            type="text"
+                                            name="email"
+                                            onChange = { props.handleChange}
+                                            placeholder="email"
+                                        />
+                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                    </Form.Group>
+                                </Form.Row>
+                                <Form.Row className="client-profile-row">
+                                    <Form.Group as={Col} md="6" controlId="password1">
+                                        <Form.Label>Password</Form.Label>
+                                        <Form.Control
+                                            required
+                                            type="password"
+                                            name="password"
+                                            onChange = { props.handleChange}
+                                            placeholder="Password"
+                                        />
+                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" controlId="password2">
+                                        <Form.Label>Confirm Password</Form.Label>
+                                        <Form.Control
+                                            required
+                                            type="password"
+                                            name="password2"
+                                            onChange = { props.handleChange}
+                                            placeholder="Confirm Password"
+                                        />
+                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                    </Form.Group>
+                                </Form.Row>
+                                <Button className="client-profile-button" type="submit">Submit</Button>
+                            </Form>
                     </div>
             </div>
         </>

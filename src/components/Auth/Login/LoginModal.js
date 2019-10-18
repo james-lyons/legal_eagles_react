@@ -17,7 +17,7 @@ const LoginModal = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <div className="row">
+                <div className="row" id="auth-row">
                         { props.errors && props.errors.map((e, i) => (
                             <div className="alert alert-danger alert-dismissible fade show"
                                 style={{width: '100%'}} role="alert" key={ i }>
@@ -29,29 +29,33 @@ const LoginModal = (props) => {
                         ))}
                         <section id="register" className="ui form">
                             <Form noValidate validated={ props.validated } onSubmit={ props.handleSubmit }>
-                                <Form.Row>
+                            <Form.Row>
                                     <Form.Group as={Col} md="12" controlId="email">
                                         <Form.Label>Email</Form.Label>
                                         <Form.Control
                                             required
                                             type="text"
+                                            name="email"
+                                            onChange={ props.handleChange}
                                             placeholder="email"
                                         />
                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                     </Form.Group>
                                 </Form.Row>
                                 <Form.Row>
-                                    <Form.Group as={Col} md="12" controlId="password1">
+                                    <Form.Group as={Col} md="12" controlId="password">
                                         <Form.Label>Password</Form.Label>
                                         <Form.Control
                                             required
                                             type="password"
+                                            name="password"
+                                            onChange={ props.handleChange}
                                             placeholder="Password"
                                         />
                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                     </Form.Group>
                                 </Form.Row>
-                                <Button type="submit">Submit</Button>
+                                <Button className="auth-button" type="submit">Submit</Button>
                             </Form>
                         </section>
                     </div>

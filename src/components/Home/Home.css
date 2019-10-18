@@ -1,22 +1,98 @@
-.homepage {
-    width: 100vw;
-    height: 92.75vh;
+* {
+    box-sizing: border-box;
 }
 
-.homepage-header {
-    height: 100%;
+body {
+    height: 100vh;
     background-image: url("https://landwehrlawmn.com/wp-content/uploads/2015/03/law-wallpapers-hd-1080p-1920x1080-desktop-02.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    /* background-position: center; */
-    background-color: black;
+    overflow-y: auto;
+}
+
+.navbar {
+    background-color: white !important;
+}
+
+.homepage-header {
+    margin-top: 3em;
 }
 
 .search_bar {
-    width: 50%;
+    width: 100%;
+    text-align: center;
 }
-/* 
-.homepage-footer {
-    height: 27.5%;
-    background-color: lightcoral;
-} */
+
+.search-form {
+    background-color: lightgreen;
+    width: 25%;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 1em;
+}
+
+.home-content {
+    max-height: 45vh;
+    max-width: 55vw;
+    margin: 3em auto 0;
+    padding: 1em;
+    background-color: whitesmoke;
+    overflow-y: auto;
+}
+
+/* Media Queries */
+
+@media (max-width: 1200px) { 
+    .search-form {
+        background-color: lightgreen;
+        width: 35%;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    .home-content {
+        max-width: 70vw;
+        margin: 3em auto;
+        padding: 1em;
+        background-color: whitesmoke;
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 900px) { 
+    .search-form {
+        background-color: lightgreen;
+        width: 50%;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    .home-content {
+        max-width: 80vw;
+        margin: 3em auto;
+        padding: 1em;
+        background-color: whitesmoke;
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 600px) { 
+    .search-form {
+        background-color: lightgreen;
+        width: 80%;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    .search-bar-header {
+        font-size: 15.5px;
+    }
+
+    .home-content {
+        max-width: 90vw;
+        margin: 3em auto;
+        padding: 1em;
+        background-color: whitesmoke;
+        overflow-y: auto;
+    }
+}
