@@ -1,10 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import Register from '../../containers/AuthContainer/Register';
 import Login from '../../containers/AuthContainer/Login';
+import { attorneyLogout } from '../../actions/attorneyActions';
+import { clientLogout } from '../../actions/clientActions';
 import './NavBar.css';
 
-const NavBar = ({ userType, setCurrentUser, setCurrentUserType, logout }) => {
+const NavBar = () => {
     
     const userRole = localStorage.getItem('user_type');
 
@@ -19,11 +22,7 @@ const NavBar = ({ userType, setCurrentUser, setCurrentUserType, logout }) => {
                     </Nav>
                     <Nav>
                         <Register />
-                        <Login
-                            setCurrentUser = { setCurrentUser }
-                            setCurrentUserType = { setCurrentUserType }
-                            userType = { userType }
-                            />
+                        <Login />
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -41,7 +40,7 @@ const NavBar = ({ userType, setCurrentUser, setCurrentUserType, logout }) => {
                     </Nav>
                     <NavDropdown title="Account" id="collasible-nav-dropdown">
                         <NavDropdown.Item href = "/attorney_profile">Account Settings</NavDropdown.Item>
-                        <NavDropdown.Item onClick = { logout }>Logout</NavDropdown.Item>
+                        <NavDropdown.Item onClick = { attorneyLogout }>Logout</NavDropdown.Item>
                     </NavDropdown>
                 </Navbar.Collapse>
             </Navbar>
@@ -59,7 +58,7 @@ const NavBar = ({ userType, setCurrentUser, setCurrentUserType, logout }) => {
                     </Nav>
                     <NavDropdown title="Account" id="collasible-nav-dropdown">
                         <NavDropdown.Item href = "/client_profile">Account Settings</NavDropdown.Item>
-                        <NavDropdown.Item onClick = { logout }>Logout</NavDropdown.Item>
+                        <NavDropdown.Item onClick = { clientLogout }>Logout</NavDropdown.Item>
                     </NavDropdown>
                 </Navbar.Collapse>
             </Navbar>
@@ -84,4 +83,10 @@ const NavBar = ({ userType, setCurrentUser, setCurrentUserType, logout }) => {
     );
 };
 
-export default NavBar;
+// const mapStateToProps = (state) => {
+//     return {
+//         user_type: user_type
+//     };
+// };
+
+export default connect(null, { attorneyLogout, clientLogout })(NavBar);

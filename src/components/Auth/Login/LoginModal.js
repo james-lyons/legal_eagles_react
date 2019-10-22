@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Modal, Button, Form, Col } from 'react-bootstrap';
 import '../Auth.css';
 
@@ -17,16 +18,25 @@ const LoginModal = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <div className="row" id="auth-row">
+                    <div className="row" id="auth-row">
                         { props.errors && props.errors.map((e, i) => (
-                            <div className="alert alert-danger alert-dismissible fade show"
-                                style={{width: '100%'}} role="alert" key={ i }>
-                                { e.message }
-                                <button className="close" data-dismiss="alert">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>    
-                            </div>
-                        ))}
+                                <div className="alert alert-danger alert-dismissible fade show"
+                                    style={{width: '100%'}} role="alert" key={ i }>
+                                    { e.message }
+                                    <button className="close" data-dismiss="alert">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>    
+                                </div>
+                            ))}
+                            { props.message &&
+                                <div className="alert alert-danger alert-dismissible fade show"
+                                    style={{width: '100%'}} role="alert">
+                                    { props.message }
+                                    <button className="close" data-dismiss="alert">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>    
+                                </div>
+                            }
                         <section id="register" className="ui form">
                             <Form noValidate validated={ props.validated } onSubmit={ props.handleSubmit }>
                             <Form.Row>
@@ -68,4 +78,11 @@ const LoginModal = (props) => {
     );
 };
 
-export default LoginModal;
+const mapStateToProps = (state) => {
+    return {
+        errors: state.attorneyReducer.errors,
+        message: state.attorneyReducer.message
+    };
+};
+
+export default connect(mapStateToProps, null)(LoginModal);

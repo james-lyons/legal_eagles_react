@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { Button, ButtonToolbar } from 'react-bootstrap';
 import API_URL from '../../constants';
 import AttorneyProfileComponent from '../../components/Profiles/AttorneyProfile/AttorneyProfileComponent';
 
@@ -9,7 +8,7 @@ class AttorneyProfile extends React.Component {
         name: '',
         email: "",
         zipcode: 0,
-        specialties: [""],
+        specialty: "",
         password: "",
         password2: "",
         errors: []
@@ -39,7 +38,6 @@ class AttorneyProfile extends React.Component {
         const name = this.state.name;
         const email = this.state.email;
         const password = this.state.password;
-        const password2 = this.state.password2;
         axios.put(`${ API_URL }/attorney/${ currentUser }`,
             { name: name, email: email, password: password },
             { withCredentials: true })

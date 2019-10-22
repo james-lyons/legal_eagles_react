@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
-import { Col, Row, Form, Button } from 'react-bootstrap';
+import { Col, Form, Button } from 'react-bootstrap';
 import API_URL from '../../constants';
 import "./Home.css";
 

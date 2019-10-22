@@ -42,10 +42,10 @@ class AttorneySearch extends React.Component {
     attorneyMapper = (attorneys) => {
         const attorneyArray = attorneys.map(attorney => 
             <div className="attorney">
-                <img src={attorney.profile_image} alt="profile-image"/>
+                <img src={attorney.profile_image} alt="profile"/>
                 <h1>{ attorney.first_name }</h1>
                 <h1>{ attorney.last_name }</h1>
-                <h1>{ attorney.city, attorney.state }</h1>
+                <h1>{ attorney.city }, { attorney.state }</h1>
                 <h1>{ attorney.specialty }</h1>
                 <h1>Reviews: { attorney.reviews }</h1>
                 <h1>{ attorney.bio}</h1>

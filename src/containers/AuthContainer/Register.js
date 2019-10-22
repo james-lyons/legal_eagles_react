@@ -1,16 +1,14 @@
 import React from 'react';
 import { Button, ButtonToolbar } from 'react-bootstrap';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { attorneyRegister } from '../../actions/attorneyActions';
+import { clientRegister } from '../../actions/clientActions';
 import AttorneyRegisterModal from '../../components/Auth/Register/AttorneyRegisterModal'
 import ClientRegisterModal from '../../components/Auth/Register/ClientRegisterModal'
 import OptionsModal from '../../components/Auth/OptionsModal'
-import API_URL from '../../constants';
 
 class Register extends React.Component {
     state = {
-        modalShow: false,
-        validated: false,
-        modalType: "",
         first_name: "",
         last_name: "",
         email: "",
@@ -18,10 +16,13 @@ class Register extends React.Component {
         state: "",
         zipcode: 0,
         specialty: "",
-        profile_image: "https://icon-library.net/images/default-profile-icon/default-profile-icon-24.jpg",
+        profile_image: "",
         password: "",
         password2: "",
         reviews: [],
+        modalShow: false,
+        modalType: "",
+        validated: "",
         errors: []
     };
 
@@ -33,59 +34,39 @@ class Register extends React.Component {
     };
 
     handleImageChange = (event) => {
-        console.log(event)
         this.setState({
           profile_image: URL.createObjectURL(event.target.files[0])
         });
-        console.log(this.state.profile_image)
-      };
-
-    handleAttorneySubmit = (event) => {
-        event.preventDefault();
-        const first_name = this.state.first_name;
-        const last_name = this.state.last_name
-        const email = this.state.email;
-        const city = this.state.city;
-        const state = this.state.state;
-        const zipcode = this.state.zipcode;
-        const specialty = this.state.specialty;
-        const profile_image = this.state.profile_image
-        const password = this.state.password;
-        const password2 = this.state.password2;
-        axios.post(`${ API_URL }/auth/registerAttorney`,
-            { first_name, last_name, email, city, state, zipcode,
-            specialty, profile_image, password, password2 },
-            { withCredentials: true })
-            .then(res => {
-                window.location.reload();
-            })
-                .catch(err => {
-                    console.log(err.response);
-                    this.setState({
-                        errors: [err.response]
-                    });
-                });
     };
 
-    handleClientSubmit = (event) => {
+    handleAttorneyRegister = (event) => {
         event.preventDefault();
-        const first_name = this.state.first_name;
-        const last_name = this.state.last_name;
-        const email = this.state.email;
-        const password = this.state.password;
-        const password2 = this.state.password2;
-        axios.post(`${ API_URL }/auth/registerClient`,
-            { first_name, last_name, email, password, password2 },
-            { withCredentials: true })
-                .then(res => {
-                    window.location.reload();
-                })
-                .catch(err => {
-                    console.log(err);
-                    this.setState({
-                        errors: [err.response]
-                    });
-                });
+        const newAttorney = {
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            email: this.state.email,
+            city: this.state.city,
+            state: this.state.state,
+            zipcode: this.state.zipcode,
+            specialty: this.state.specialty,
+            profile_image: this.state.profile_image,
+            password: this.state.password,
+            password2: this.state.password2,
+        }
+        this.props.attorneyRegister(newAttorney);
+    };
+
+    handleClientRegister = (event) => {
+        event.preventDefault();
+        const newClient = {
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            email: this.state.email,
+            password: this.state.password,
+            password2: this.state.password2,
+        }
+        console.log(newClient)
+        this.props.clientRegister(newClient)
     };
 
     handleValidation = (event) => {
@@ -95,7 +76,7 @@ class Register extends React.Component {
           event.stopPropagation();
         };    
         this.setValidated(true);
-      };
+    };
 
     setValidated = (validated) => {
         this.setState({
@@ -123,9 +104,9 @@ class Register extends React.Component {
                     onHide = { () => this.setModalShow(false) }
                     selectModal = { this.selectModal }
                     modalSwitch = { this.modalSwitch }
-                    handleSubmit = { this.handleAttorneySubmit }
                     handleChange = { this.handleChange }
                     handleImageChange = { this.handleImageChange }
+                    handleSubmit = { this.handleAttorneyRegister }
                     handleValidation = { this.handleValidation }
                     profile_image = { this.state.profile_image }
                     errors = { this.state.errors }
@@ -136,8 +117,8 @@ class Register extends React.Component {
                     onHide = { () => this.setModalShow(false) }
                     selectModal = { this.selectModal }
                     modalSwitch = { this.modalSwitch }
-                    handleSubmit = { this.handleClientSubmit }
                     handleChange = { this.handleChange }
+                    handleSubmit = { this.handleClientRegister }
                 />;
             default:
                 return <OptionsModal 
@@ -165,4 +146,4 @@ class Register extends React.Component {
     };
 };
 
-export default Register;
+export default connect(null, { attorneyRegister, clientRegister } )(Register);

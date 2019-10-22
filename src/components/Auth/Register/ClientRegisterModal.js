@@ -1,5 +1,6 @@
 import React from 'react';
-import { Modal, Button, Form, Col, InputGroup } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { Modal, Button, Form, Col } from 'react-bootstrap';
 import '../Auth.css';
 
 const ClientRegisterModal = (props) => {
@@ -17,7 +18,7 @@ const ClientRegisterModal = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className="row" id="auth-row">
+                <div className="row" id="auth-row">
                         { props.errors && props.errors.map((e, i) => (
                             <div className="alert alert-danger alert-dismissible fade show"
                                 style={{width: '100%'}} role="alert" key={ i }>
@@ -27,6 +28,15 @@ const ClientRegisterModal = (props) => {
                                 </button>    
                             </div>
                         ))}
+                        { props.message &&
+                            <div className="alert alert-danger alert-dismissible fade show"
+                                style={{width: '100%'}} role="alert">
+                                { props.message }
+                                <button className="close" data-dismiss="alert">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>    
+                            </div>
+                        }
                         <section id="register" className="ui form">
                             <Form noValidate validated={ props.validated } onSubmit={ props.handleSubmit }>
                             <Form.Row>
@@ -110,4 +120,11 @@ const ClientRegisterModal = (props) => {
     );
 };
 
-export default ClientRegisterModal;
+const mapStateToProps = (state) => {
+    return {
+        errors: state.clientReducer.errors,
+        message: state.clientReducer.message
+    };
+};
+
+export default connect(mapStateToProps, null)(ClientRegisterModal);

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Modal, Button, Form, Col, Group, Image } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { Modal, Button, Form, Col, Image } from 'react-bootstrap';
 import '../Auth.css';
 
 const AttorneyRegisterModal = (props) => {
@@ -27,6 +28,15 @@ const AttorneyRegisterModal = (props) => {
                                 </button>    
                             </div>
                         ))}
+                        { props.message &&
+                            <div className="alert alert-danger alert-dismissible fade show"
+                                style={{width: '100%'}} role="alert">
+                                { props.message }
+                                <button className="close" data-dismiss="alert">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>    
+                            </div>
+                        }
                         <section id="register" className="ui form">
                             <Form noValidate validated={ props.validated } onSubmit={ props.handleSubmit }>
                                 <Form.Row>
@@ -246,4 +256,11 @@ const AttorneyRegisterModal = (props) => {
     );
 };
 
-export default AttorneyRegisterModal;
+const mapStateToProps = (state) => {
+    return {
+        errors: state.attorneyReducer.errors,
+        message: state.attorneyReducer.message
+    };
+};
+
+export default connect(mapStateToProps, null)(AttorneyRegisterModal);

@@ -5,7 +5,10 @@ import AttorneySearch from '../components/AttorneySearch/AttorneySearch'
 import AttorneyProfile from '../containers/ProfileContainer/AttorneyProfile';
 import ClientProfile from '../containers/ProfileContainer/ClientProfile';
 
-export default withRouter(({ userType }) => {
+export default withRouter(() => {
+
+    const userType = localStorage.getItem('user_type');
+
     const AttorneyRoute = ({ component: Component, ...rest }) => (
         <Route { ...rest } render = {(props) => (
             userType === 'attorney'
