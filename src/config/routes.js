@@ -4,6 +4,7 @@ import Home from '../components/Home/Home';
 import AttorneySearch from '../components/AttorneySearch/AttorneySearch'
 import AttorneyProfile from '../containers/ProfileContainer/AttorneyProfile';
 import ClientProfile from '../containers/ProfileContainer/ClientProfile';
+import AttorneyPublicProfile from '../components/AttorneySearch/AttorneyPublicProfile';
 
 export default withRouter(() => {
 
@@ -29,6 +30,7 @@ export default withRouter(() => {
         <Switch>
             <Route exact path = '/' component = { Home } />
             <Route path = '/attorney_search' component={ AttorneySearch } />
+            <Route path = '/attorney/:attorney_url' render={ props => <AttorneyPublicProfile {...props} /> }/>
             <AttorneyRoute path = '/attorney_profile' component = { AttorneyProfile } />
             <ClientRoute path = '/client_profile' component = { ClientProfile } />
         </Switch>

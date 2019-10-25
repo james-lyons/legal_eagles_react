@@ -4,8 +4,9 @@
 }
 
 #auth-row {
-    margin-left: 0 !important;
-    margin-right: 0 !important;   
+    /* margin-left: 0 !important;
+    margin-right: 0 !important;    */
+    justify-content: center;
 }
 
 p {
@@ -14,6 +15,10 @@ p {
 
 #profile-image {
     width: 20em;
+}
+
+#register {
+    padding: 1rem;
 }
 
 /* Media Queries */

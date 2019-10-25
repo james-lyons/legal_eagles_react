@@ -18,7 +18,7 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="#AttorneySearch">Attorney Search</Nav.Link>
+                        <Nav.Link href="/attorney_search">Attorney Search</Nav.Link>
                     </Nav>
                     <Nav>
                         <Register />
@@ -36,7 +36,7 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="#AttorneySearch">Attorney Search</Nav.Link>
+                        <Nav.Link href="/attorney_search">Attorney Search</Nav.Link>
                     </Nav>
                     <NavDropdown title="Account" id="collasible-nav-dropdown">
                         <NavDropdown.Item href = "/attorney_profile">Account Settings</NavDropdown.Item>
@@ -54,7 +54,7 @@ const NavBar = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto">
-                        <Nav.Link href="#AttorneySearch">Attorney Search</Nav.Link>
+                        <Nav.Link href="/attorney_search">Attorney Search</Nav.Link>
                     </Nav>
                     <NavDropdown title="Account" id="collasible-nav-dropdown">
                         <NavDropdown.Item href = "/client_profile">Account Settings</NavDropdown.Item>
@@ -82,11 +82,5 @@ const NavBar = () => {
         </>
     );
 };
-
-// const mapStateToProps = (state) => {
-//     return {
-//         user_type: user_type
-//     };
-// };
 
 export default connect(null, { attorneyLogout, clientLogout })(NavBar);

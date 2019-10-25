@@ -1,10 +1,11 @@
 
 function attorneyReducer(state = {
     attorney: {
-        first_name: "",
-        last_name: "",
+        name: "",
         email: "",
         city: "",
+        url: "",
+        bio: "",
         state: "",
         zipcode: 0,
         specialty: "",
@@ -13,7 +14,8 @@ function attorneyReducer(state = {
     },
     user_id: null,
     user_type: null,
-    attorneys: [],
+    results: null,
+    fetched_attorney: null,
     errors: [],
     message: "",
 }, action) {
@@ -49,17 +51,17 @@ function attorneyReducer(state = {
         case "ATTORNEY_LOGOUT_REJECTED":
             return { ...state, errors: action.payload.response.data.errors };
 
-        case "FETCHED_ATTORNEY_FULFILLED":
-            return {...state, errors: action.payload.response.data.errors};
+        case "FETCH_ATTORNEY_FULFILLED":
+            return { ...state, fetched_attorney: action.payload.data };
 
-        case "FETCHED_ATTORNEY_REJECTED":
-            return {...state, errors: action.payload.response.data.errors};
+        case "FETCH_ATTORNEY_REJECTED":
+            return { ...state, errors: action.payload.response.data.errors };
 
-        case "FETCHED_ATTORNEYS_FULFILLED":
-            return [...state, { attorneys: action.data.attorneys }];
+        case "FETCH_ATTORNEYS_FULFILLED":
+            return { ...state, results: action.payload.data };
 
-        case "FETCHED_ATTORNEYS_REJECTED":
-            return {...state, errors: action.payload.response.data.errors};
+        case "FETCH_ATTORNEYS_REJECTED":
+            return { ...state, errors: action.payload.response.data.errors };
         
         default:
             return state;

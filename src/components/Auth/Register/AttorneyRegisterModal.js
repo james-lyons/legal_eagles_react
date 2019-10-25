@@ -40,44 +40,17 @@ const AttorneyRegisterModal = (props) => {
                         <section id="register" className="ui form">
                             <Form noValidate validated={ props.validated } onSubmit={ props.handleSubmit }>
                                 <Form.Row>
-                                    <Form.Group as={Col} md="6" controlId="first_name">
-                                        <Form.Label>First name</Form.Label>
+                                    <Form.Group as={Col} md="6" controlId="name">
+                                        <Form.Label>Full name</Form.Label>
                                         <Form.Control
                                             required
-                                            name="first_name"
+                                            name="name"
                                             type="text"
                                             onChange={ props.handleChange }
-                                            placeholder="First name"
+                                            placeholder="James Lyons"
                                         />
                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                     </Form.Group>
-                                    <Form.Group as={Col} md="6" controlId="last_name">
-                                        <Form.Label>Last name</Form.Label>
-                                        <Form.Control
-                                            required
-                                            name="last_name"
-                                            type="text"
-                                            onChange={ props.handleChange }
-                                            placeholder="Last name"
-                                        />
-                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                    </Form.Group>                               
-                                </Form.Row>
-                                <Form.Row>
-                                    <Form.Group as={Col} md="6" controlId="profile_image">
-                                    <Form.Label>Profile Image</Form.Label>
-                                        <Form.Control 
-                                            required
-                                            name="profile_image"
-                                            type="file"
-                                            onChange={ props.handleImageChange }
-                                        />
-                                    </Form.Group>
-                                    <Col id="profile-image" xs={6} md={2}>
-                                        <Image src={props.profile_image} thumbnail />
-                                    </Col>
-                                </Form.Row>
-                                <Form.Row>
                                     <Form.Group as={Col} md="6" controlId="email">
                                         <Form.Label>Email</Form.Label>
                                         <Form.Control
@@ -88,9 +61,11 @@ const AttorneyRegisterModal = (props) => {
                                             placeholder="email"
                                         />
                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                    </Form.Group>
+                                    </Form.Group>                     
+                                </Form.Row>
+                                <Form.Row>
                                     <Form.Group as={Col} md="6" controlId="specialty">
-                                        <Form.Label>Specialties</Form.Label>
+                                        <Form.Label>Specialty</Form.Label>
                                         <Form.Control
                                             required
                                             name="specialty"
@@ -121,6 +96,17 @@ const AttorneyRegisterModal = (props) => {
                                             <option value="Tort">Tort Law</option>
                                             <option value="Trust and Estate">Trust and Estate Law</option>
                                         </Form.Control>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="6" controlId="url">
+                                        <Form.Label>Your url: https://legaleagles/_______</Form.Label>
+                                        <Form.Control
+                                            required
+                                            name="url"
+                                            type="text"
+                                            onChange={ props.handleChange }
+                                            placeholder="your url"
+                                        />
+                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                     </Form.Group>
                                 </Form.Row>
                                 <Form.Row>
@@ -210,6 +196,34 @@ const AttorneyRegisterModal = (props) => {
                                         <Form.Control.Feedback type="invalid">
                                             Please provide a valid zip.
                                         </Form.Control.Feedback>
+                                    </Form.Group>
+                                </Form.Row>
+                                <Form.Row>
+                                    <Form.Group as={Col} md="6" controlId="profile_image">
+                                    <Form.Label>Profile Image</Form.Label>
+                                        <Form.Control 
+                                            required
+                                            name="profile_image"
+                                            type="text"
+                                            onChange={ props.handleChange }
+                                        />
+                                    </Form.Group>
+                                    <Col id="profile-image" as={Col} md="3" xs={6}>
+                                        <Image src={props.profile_image} thumbnail />
+                                    </Col>
+                                </Form.Row>
+                                <Form.Row>
+                                    <Form.Group as={Col} md="12" controlId="bio">
+                                        <Form.Label>Bio</Form.Label>
+                                        <Form.Control
+                                            required
+                                            name="bio"
+                                            type="text"
+                                            as="textarea"
+                                            rows="4"
+                                            onChange={ props.handleChange }
+                                            placeholder="Write anything you like here"
+                                        />
                                     </Form.Group>
                                 </Form.Row>
                                 <Form.Row>

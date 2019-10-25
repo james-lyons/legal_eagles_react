@@ -1,0 +1,39 @@
+
+.attorney-public-profile {
+    padding: 3rem;
+}
+
+.attorney-profile-image {
+    width: 12.5rem;
+}
+
+.attorney-profile-content {
+    padding: 1rem;
+    background-color: white;
+}
+
+.attorney-profile-reviews {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: white;
+}
+
+.review-card {
+    border: 1px solid black;
+    padding: 1rem;
+    margin: 1rem;
+    /* max-width: 50%; */
+}
+
+#attorney-public-profile-reviews-section {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#review-col {
+    padding-left: 0px;
+}
+
+#contact-col {
+    padding-left: 0;
+}

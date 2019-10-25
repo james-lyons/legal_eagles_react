@@ -35,60 +35,6 @@ class Login extends React.Component {
         this.props.clientLogin(email, password);
     }
 
-    // handleAttorneySubmit = (event) => {
-    //     event.preventDefault();
-    //     const email = this.state.email;
-    //     const password = this.state.password;
-    //     axios.post(`${ API_URL }/auth/attorneyLogin`, { email, password}, { withCredentials: true })
-    //         .then(res => {
-    //             this.props.setCurrentUser(res.data.id)
-    //             axios.get(`${ API_URL }/attorney/${ res.data.id }`,)
-    //             .then(res => {
-    //                 this.props.setCurrentUserType(res.data.data.user_type)
-    //                 window.location.reload();
-    //             })
-    //             .catch(err => {
-    //                 console.log(err.response);
-    //                 this.setState({
-    //                     errors: [err.response]
-    //                 });
-    //             });
-    //         })
-    //         .catch(err => {
-    //             console.log(err.response);
-    //             this.setState({
-    //                 errors: [err.response]
-    //             });
-    //         });
-    // };
-
-    // handleClientSubmit = (event) => {
-    //     event.preventDefault();
-    //     const email = this.state.email;
-    //     const password = this.state.password;
-    //     axios.post(`${ API_URL }/auth/clientLogin`, { email, password}, { withCredentials: true })
-    //         .then(res => {
-    //             this.props.setCurrentUser(res.data.id)
-    //             axios.get(`${ API_URL }/client/${ res.data.id }`,)
-    //             .then(res => {
-    //                 this.props.setCurrentUserType(res.data.data.user_type)
-    //                 window.location.reload();
-    //             })
-    //             .catch(err => {
-    //                 console.log(err.response);
-    //                 this.setState({
-    //                     errors: [err.response]
-    //                 });
-    //             });
-    //         })
-    //         .catch(err => {
-    //             console.log(err.response);
-    //             this.setState({
-    //                 errors: [err.response]
-    //             });
-    //         });
-    // };
-
     setModalShow = (modalState) => {
         this.setState({
             modalShow: modalState
@@ -147,9 +93,5 @@ class Login extends React.Component {
         );
     };
 };
-
-const mapStateToProps = () => {
-
-}
 
 export default connect(null, { attorneyLogin, clientLogin })(Login);

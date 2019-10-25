@@ -9,17 +9,17 @@ import OptionsModal from '../../components/Auth/OptionsModal'
 
 class Register extends React.Component {
     state = {
-        first_name: "",
-        last_name: "",
+        name: "",
         email: "",
         city: "",
+        url: "",
+        bio: "",
         state: "",
         zipcode: 0,
         specialty: "",
         profile_image: "",
         password: "",
         password2: "",
-        reviews: [],
         modalShow: false,
         modalType: "",
         validated: "",
@@ -30,7 +30,6 @@ class Register extends React.Component {
         this.setState({
             [event.target.name]: event.target.value
         });
-        console.log(this.state)
     };
 
     handleImageChange = (event) => {
@@ -42,30 +41,29 @@ class Register extends React.Component {
     handleAttorneyRegister = (event) => {
         event.preventDefault();
         const newAttorney = {
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
+            name: this.state.name,
             email: this.state.email,
             city: this.state.city,
+            url: this.state.url,
+            bio: this.state.bio,
             state: this.state.state,
             zipcode: this.state.zipcode,
             specialty: this.state.specialty,
             profile_image: this.state.profile_image,
             password: this.state.password,
             password2: this.state.password2,
-        }
+        };
         this.props.attorneyRegister(newAttorney);
     };
 
     handleClientRegister = (event) => {
         event.preventDefault();
         const newClient = {
-            first_name: this.state.first_name,
-            last_name: this.state.last_name,
+            name: this.state.name,
             email: this.state.email,
             password: this.state.password,
             password2: this.state.password2,
-        }
-        console.log(newClient)
+        };
         this.props.clientRegister(newClient)
     };
 

@@ -1,10 +1,9 @@
 import React from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Col, Form, Button } from 'react-bootstrap';
-import API_URL from '../../constants';
+import { fetchAttorneys } from '../../actions/attorneyActions';
 import "./Home.css";
-
 
 class Home extends React.Component {
     state = {
@@ -18,28 +17,13 @@ class Home extends React.Component {
         event.preventDefault();
         const specialty = this.state.specialty
         const zipcode = this.state.zipcode
-        axios.get(`${ API_URL }/attorney/search`,
-            {params: {specialty: specialty, zipcode: zipcode}},
-            { withCredentials: true })
-                .then(res => { 
-                    this.setState({
-                        results: res.data.data
-                    });
-                    console.log(this.state.results)
-                })
-                .catch(err => {
-                    console.log(err)
-                    this.setState({
-                        errors: err
-                    });
-                });
+        this.props.fetchAttorneys(specialty, zipcode)
     };
 
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
-        })
-        console.log(this.state)
+        });
     };
 
     render() {
@@ -50,14 +34,13 @@ class Home extends React.Component {
                         <div className="search_bar justify-content-md-center">
                             <Form onSubmit={ this.handleSubmit } className="search-form justify-content-md-center">
                                 <Form.Row className="justify-content-md-center">
-                                <Form.Group as={Col} md="11" controlId="specialty">
-                                        <Form.Label className="search-bar-header">Search by Specialty And / Or Zipcode</Form.Label>
+                                    <Form.Group as={Col} md="4" controlId="specialty">
                                         <Form.Control
                                             name="specialty"
                                             onChange={ this.handleChange }
                                             as="select"
                                         >
-                                            <option value="">Select</option>
+                                            <option value="">Select Specialty</option>
                                             <option value="Admiralty">Admiralty Law</option>
                                             <option value="Animal Rights">Animal Rights Law</option>
                                             <option value="Civil Rights">Civil Rights Law</option>
@@ -82,9 +65,7 @@ class Home extends React.Component {
                                             <option value="Trust and Estate">Trust and Estate Law</option>
                                         </Form.Control>
                                     </Form.Group>
-                                </Form.Row>
-                                <Form.Row className="justify-content-md-center">
-                                    <Form.Group as={Col} md="11" controlId="zipcode">
+                                    <Form.Group as={Col} md="4" controlId="zipcode">
                                         <Form.Control
                                             type="zipcode"
                                             name="zipcode"
@@ -93,20 +74,26 @@ class Home extends React.Component {
                                         />
                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                     </Form.Group>
+                                <Button className="home-search-button" id="attorney-search-button" type="submit">Search</Button>
                                 </Form.Row>
-                                <Button className="home-search-button" type="submit">Submit</Button>
                             </Form>
                         </div>
                         <div className="home-content">
                             <h4 className="home-h4">Need help finding legal representation? Afraid that seeking restitution for a wrong commited unto you would be too costly, take too much time, or be unwinnable? Sign up for a free account and start browsing attorneys in your area, it will only cost a few minutes and you may find just what you need.</h4>
                             <h4 className="home-h4">Every years, more and more attorneys enter the work force at a rate that the market is incapable of baring. Sign up for a free account and start finding clients who need legal representation for cases that may never have been litigated.</h4>
                         </div>
-                        { this.state.results && <Redirect to={{pathname:'/attorney_search', state: {results: this.state.results}}} /> }
+                        { this.props.results && <Redirect to={{ pathname:'/attorney_search' }} /> }
                     </div>
                 </div>
             </>
-        );      
+        );
     };
 };
 
-export default Home;
+const mapStateToProps = (state) => {
+    return {
+        results: state.attorneyReducer.results
+    };
+};
+
+export default connect(mapStateToProps, { fetchAttorneys })(Home);

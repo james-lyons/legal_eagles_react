@@ -1,8 +1,7 @@
 
 function clientReducer(state = {
     client: {
-        first_name: "",
-        last_name: "",
+        name: "",
         email: "",
     },
     user_id: "",

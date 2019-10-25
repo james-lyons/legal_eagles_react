@@ -24,7 +24,7 @@ const attorneyLogin = (email, password) => {
                     localStorage.setItem('user_type', res.data.user_type);
                     dispatch({ type: "ATTORNEY_LOGIN_FULFILLED", payload: res.data });
                     dispatch({ type: "USER_LOGIN_FULFILLED", payload: res.data });
-                    fetchAttorney(res.data.id);
+                    fetchAttorneyById(res.data.id);
                     window.location.reload();
                 })
                 .catch(err => {
@@ -46,9 +46,21 @@ const attorneyLogout = () => {
         return { type: "USER_LOGOUT_FULFILLED" }
 };
 
-const fetchAttorney = (attorney_id) => {
+const fetchAttorneyById = (attorney_id) => {
     return function(dispatch) {
         axios.get(`${ API_URL }/attorney/${ attorney_id }`, { withCredentials: true })
+            .then(res => {
+                dispatch({type: "FETCH_ATTORNEY_FULFILLED", payload: res.data})
+            })
+            .catch(err => {
+                dispatch({type: "FETCH_ATTORNEY_REJECTED", payload: err})
+            });
+    };
+};
+
+const fetchAttorneyByURL = (attorney_url) => {
+    return function(dispatch) {
+        axios.get(`${ API_URL }/attorney/search/url/${ attorney_url }`, { withCredentials: true })
             .then(res => {
                 dispatch({type: "FETCH_ATTORNEY_FULFILLED", payload: res.data})
             })
@@ -76,6 +88,7 @@ export {
     attorneyRegister,
     attorneyLogin,
     attorneyLogout,
-    fetchAttorney,
+    fetchAttorneyById,
+    fetchAttorneyByURL,
     fetchAttorneys,
 }

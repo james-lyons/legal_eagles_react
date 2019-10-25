@@ -40,28 +40,17 @@ const ClientRegisterModal = (props) => {
                         <section id="register" className="ui form">
                             <Form noValidate validated={ props.validated } onSubmit={ props.handleSubmit }>
                             <Form.Row>
-                                    <Form.Group as={Col} md="6" controlId="first_name">
-                                        <Form.Label>First name</Form.Label>
+                                    <Form.Group as={Col} md="12" controlId="name">
+                                        <Form.Label>Full name</Form.Label>
                                         <Form.Control
                                             required
                                             type="text"
-                                            name="first_name"
+                                            name="name"
                                             onChange = { props.handleChange}
-                                            placeholder="First name"
+                                            placeholder="James Lyons"
                                         />
                                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                    </Form.Group>
-                                    <Form.Group as={Col} md="6" controlId="last_name">
-                                        <Form.Label>Last name</Form.Label>
-                                        <Form.Control
-                                            required
-                                            type="text"
-                                            name="last_name"
-                                            onChange = { props.handleChange}
-                                            placeholder="Last name"
-                                        />
-                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                    </Form.Group>                               
+                                    </Form.Group>                              
                                 </Form.Row>
                                 <Form.Row>
                                     <Form.Group as={Col} md="12" controlId="email">
