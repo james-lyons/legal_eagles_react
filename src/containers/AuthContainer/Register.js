@@ -5,7 +5,7 @@ import { attorneyRegister } from '../../actions/attorneyActions';
 import { clientRegister } from '../../actions/clientActions';
 import AttorneyRegisterModal from '../../components/Auth/Register/AttorneyRegisterModal'
 import ClientRegisterModal from '../../components/Auth/Register/ClientRegisterModal'
-import OptionsModal from '../../components/Auth/OptionsModal'
+import OptionsModal from '../../components/Auth/Options/OptionsModal';
 
 class Register extends React.Component {
     state = {

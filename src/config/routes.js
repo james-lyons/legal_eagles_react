@@ -1,10 +1,10 @@
 import React from 'react';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
-import Home from '../components/Home/Home';
-import AttorneySearch from '../components/AttorneySearch/AttorneySearch'
-import AttorneyProfile from '../containers/ProfileContainer/AttorneyProfile';
+import Home from '../containers/HomeContainer/Home';
+import AttorneySearch from '../containers/AttorneySearchContainer/AttorneySearch';
 import ClientProfile from '../containers/ProfileContainer/ClientProfile';
-import AttorneyPublicProfile from '../components/AttorneySearch/AttorneyPublicProfile';
+import AttorneyPublicProfile from '../containers/ProfileContainer/AttorneyPublicProfile';
+import AttorneyPrivateProfile from '../containers/ProfileContainer/AttorneyPrivateProfile';
 
 export default withRouter(() => {
 
@@ -31,7 +31,7 @@ export default withRouter(() => {
             <Route exact path = '/' component = { Home } />
             <Route path = '/attorney_search' component={ AttorneySearch } />
             <Route path = '/attorney/:attorney_url' render={ props => <AttorneyPublicProfile {...props} /> }/>
-            <AttorneyRoute path = '/attorney_profile' component = { AttorneyProfile } />
+            <AttorneyRoute path = '/attorney_profile' component = { AttorneyPrivateProfile } />
             <ClientRoute path = '/client_profile' component = { ClientProfile } />
         </Switch>
     );

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import API_URL from '../../constants';
-import AttorneyProfileComponent from '../../components/Profiles/AttorneyProfile/AttorneyProfileComponent';
+import AttorneyPrivateProfileComponent from '../../components/Profiles/AttorneyPrivateProfile/AttorneyPrivateProfile';
 
 class AttorneyProfile extends React.Component {
     state = {
@@ -62,7 +62,7 @@ class AttorneyProfile extends React.Component {
     render() {
         return (
             <>
-                <AttorneyProfileComponent
+                <AttorneyPrivateProfileComponent
                     name = { this.state.name }
                     email = { this.state.email }
                     zipcode = { this.state.zipcode }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import { attorneyLogin } from '../../actions/attorneyActions';
 import { clientLogin } from '../../actions/clientActions';
-import OptionsModal from '../../components/Auth/OptionsModal';
+import OptionsModal from '../../components/Auth/Options/OptionsModal';
 import LoginModal from '../../components/Auth/Login/LoginModal';
 
 class Login extends React.Component {

@@ -19,9 +19,11 @@ const clientLogin = (email, password) => {
             { email: email, password: password},
             { withCredentials: true })
                 .then(res => {
-                    localStorage.setItem('uid', res.data.id);
-                    localStorage.setItem('user_type', res.data.user_type);
-                    dispatch({ type: "CLIENT_LOGIN_FULFILLED", payload: res.data });
+                    localStorage.setItem('uid', res.data.data.id);
+                    localStorage.setItem('user_type', res.data.data.user_type);
+                    localStorage.setItem('client_name', res.data.data.name);
+                    localStorage.setItem('client_email', res.data.data.email);
+                    dispatch({ type: "CLIENT_LOGIN_FULFILLED", payload: res.data.data });
                     dispatch({ type: "USER_LOGIN_FULFILLED", payload: res.data });
                     window.location.reload();
                 })
@@ -47,5 +49,5 @@ const clientLogout = () => {
 export {
     clientRegister,
     clientLogin,
-    clientLogout
+    clientLogout,
 }

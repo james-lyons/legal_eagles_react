@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { Form, Col, Button, Row } from 'react-bootstrap';
 import { fetchAttorneys } from '../../actions/attorneyActions';
 import { fetchAttorneyById } from '../../actions/attorneyActions';
@@ -39,7 +38,7 @@ class AttorneySearch extends React.Component {
             <div className="attorney-card" onClick={() => this.attorneySelect(attorney)}>
                 <Row>
                     <Col className="image-Col col-3">
-                        <img src={attorney.profile_image} alt="profile"/>
+                        <img src={attorney.profile_image} className="attorney-search-image" alt="profile"/>
                     </Col>
                     <Col className="info-Col col-9">
                         <h4>{ attorney.name }</h4>

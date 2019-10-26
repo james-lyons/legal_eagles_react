@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AttorneyProfileComponent = (props) => {
+const AttorneyPrivateProfileComponent = (props) => {
     return (
         <>
             <div>
@@ -95,4 +95,4 @@ const AttorneyProfileComponent = (props) => {
     )
 }
 
-export default AttorneyProfileComponent;
+export default AttorneyPrivateProfileComponent;

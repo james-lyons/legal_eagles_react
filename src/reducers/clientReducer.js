@@ -25,7 +25,11 @@ function clientReducer(state = {
             return {
                 ...state,
                 user_id: action.payload.id,
-                user_type: action.payload.user_type
+                user_type: action.payload.user_type,
+                client: {
+                    name: action.payload.name,
+                    email: action.payload.email,
+                }
             };
 
         case "CLIENT_LOGIN_REJECTED":
