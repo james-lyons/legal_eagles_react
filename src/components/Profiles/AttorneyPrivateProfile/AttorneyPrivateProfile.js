@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button, Form, Col, Image } from 'react-bootstrap';
+import { Button, Form, Col, Image } from 'react-bootstrap';
 import './AttorneyPrivateProfileCss.css'
 
 const AttorneyPrivateProfileComponent = (props) => {

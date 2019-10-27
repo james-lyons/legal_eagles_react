@@ -9,7 +9,7 @@ const AttorneyPublicProfileComponent = ({ ...props }) => {
             <div className="attorney-public-profile">
                 <Row>
                     <Col className="col-3">
-                        <img className="attorney-profile-image" src={ props.fetched_attorney && props.fetched_attorney.profile_image } />
+                        <img className="attorney-profile-image" src={ props.fetched_attorney && props.fetched_attorney.profile_image } alt="/>
                     </Col>
                     <Col className="col-9" id="attorney-public-profile-reviews-section">
                         <Row>

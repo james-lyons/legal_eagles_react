@@ -6,7 +6,6 @@ import { fetchAttorneyByURL } from '../../actions/attorneyActions';
 import { submitReview } from '../../actions/reviewAction';
 import { editReview } from '../../actions/reviewAction';
 import { deleteReview } from '../../actions/reviewAction';
-import AttorneyPublicProfileComponent from '../../components/Profiles/AttorneyPublicProfile/AttorneyPublicProfileComponent';
 
 class AttorneyPublicProfile extends React.Component {
     state = {
