@@ -35,7 +35,7 @@ class Home extends React.Component {
                         <div className="search_bar justify-content-md-center">
                             <Form onSubmit={ this.handleSubmit } className="search-form justify-content-md-center">
                                 <Form.Row className="justify-content-md-center">
-                                    <Form.Group as={Col} md="4" controlId="specialty">
+                                    <Form.Group as={Col} md="5" controlId="specialty">
                                         <Form.Control
                                             name="specialty"
                                             onChange={ this.handleChange }
@@ -66,7 +66,7 @@ class Home extends React.Component {
                                             <option value="Trust and Estate">Trust and Estate Law</option>
                                         </Form.Control>
                                     </Form.Group>
-                                    <Form.Group as={Col} md="4" controlId="zipcode">
+                                    <Form.Group as={Col} md="5" controlId="zipcode">
                                         <Form.Control
                                             type="zipcode"
                                             name="zipcode"
