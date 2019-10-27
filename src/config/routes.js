@@ -3,7 +3,7 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import Home from '../containers/HomeContainer/Home';
 import AttorneySearch from '../containers/AttorneySearchContainer/AttorneySearch';
 import ClientProfile from '../containers/ProfileContainer/ClientProfile';
-import AttorneyPublicProfile from '../containers/ProfileContainer/AttorneyPublicProfile';
+import { AttorneyPublicProfile } from '../containers/ProfileContainer/AttorneyPublicProfile';
 import AttorneyPrivateProfile from '../containers/ProfileContainer/AttorneyPrivateProfile';
 
 export default withRouter(() => {
