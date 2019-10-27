@@ -28,17 +28,16 @@ class AttorneySearch extends React.Component {
     };
 
     attorneySelect = (attorney) => {
-        console.log(attorney.url)
         this.props.fetchAttorneyByURL(attorney.url);
-        this.props.history.push(`/attorney/${attorney.url}`)
+        this.props.history.push(`/attorney/${ attorney.url }`)
     }
 
     attorneyMapper = (attorneys) => {
         const attorneyArray = attorneys.map(attorney => 
-            <div className="attorney-card" onClick={() => this.attorneySelect(attorney)}>
+            <div className="attorney-card" onClick={ () => this.attorneySelect(attorney) }>
                 <Row>
                     <Col className="image-Col col-3">
-                        <img src={attorney.profile_image} className="attorney-search-image" alt="profile"/>
+                        <img src={ attorney.profile_image } className="attorney-search-image" alt="profile"/>
                     </Col>
                     <Col className="info-Col col-9">
                         <h4>{ attorney.name }</h4>
@@ -60,7 +59,7 @@ class AttorneySearch extends React.Component {
                 <div className="search_bar justify-content-md-center">
                             <Form onSubmit={ this.attorneySearch } className="search-form justify-content-md-center">
                                 <Form.Row className="justify-content-md-center">
-                                    <Form.Group as={Col} md="5" controlId="specialty">
+                                    <Form.Group as={ Col } md="5" controlId="specialty">
                                         <Form.Control
                                             name="specialty"
                                             onChange={ this.handleChange }
