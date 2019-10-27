@@ -27,8 +27,8 @@ function attorneyReducer(state = {
         case "ATTORNEY_REGISTER_REJECTED":
             return {
                 ...state,
-                errors: action.payload,
-                message: action.payload.message
+                errors: action.payload.response.data.errors,
+                message: action.payload.response.data.message
             };
 
         case "ATTORNEY_LOGIN_FULFILLED": 

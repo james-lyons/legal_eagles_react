@@ -9,6 +9,7 @@ const attorneyRegister = (data) => {
                 window.location.reload();
             })
             .catch(err => {
+                console.log(err)
                 dispatch({ type: "ATTORNEY_REGISTER_REJECTED", payload: err })
             });
     };
