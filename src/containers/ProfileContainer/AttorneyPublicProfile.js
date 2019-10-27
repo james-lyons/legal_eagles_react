@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import emailjs from 'emailjs-com';
 import { Col, Row, Form, Button } from 'react-bootstrap';
 import { fetchAttorneyByURL } from '../../actions/attorneyActions';
-import { submitReview } from '../../actions/reviewAction';
-import { editReview } from '../../actions/reviewAction';
-import { deleteReview } from '../../actions/reviewAction';
+import { submitReview, editReview, deleteReview } from '../../actions/reviewAction';
+import '../../components/Profiles/AttorneyPublicProfile/AttorneyPublicProfileCss.css'
 
 class AttorneyPublicProfile extends React.Component {
     state = {
