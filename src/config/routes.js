@@ -19,18 +19,18 @@ export default withRouter(() => {
     );
 
     const AttorneyRoute = ({ component: Component, ...rest }) => (
-        <Route { ...rest } render = {(props) => (
+        <Route { ...rest } render={(props) => (
             userType === 'attorney'
                 ? <Component { ...props } />
-                : <Redirect to = '/' />
+                : <Redirect to='/' />
         )} />
     );
 
     const ClientRoute = ({ component: Component, ...rest }) => (
-        <Route { ...rest } render = {(props) => (
+        <Route { ...rest } render={(props) => (
             userType === 'client'
                 ? <Component { ...props } />
-                : <Redirect to = '/' />
+                : <Redirect to='/' />
         )} />
     );
 
@@ -44,7 +44,7 @@ export default withRouter(() => {
         <Switch>
             <Route exact path = '/' component = { Home } />
             <PrivateRoute path = '/attorney_search' component={ AttorneySearch } />
-            <Route path = '/attorney/:attorney_url' render={ props => <AttorneyPublicProfile {...props} /> }/>
+            <PrivateRoute path = '/attorney/:attorney_url' render={ props => <AttorneyPublicProfile {...props} /> }/>
             <AttorneyRoute path = '/attorney_profile' component = { AttorneyPrivateProfile } />
             <ClientRoute path = '/client_profile' component = { ClientProfile } />
             <Route component={ redirectToHome }/>
