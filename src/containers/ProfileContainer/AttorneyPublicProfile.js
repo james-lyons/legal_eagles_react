@@ -211,4 +211,11 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, { fetchAttorneyByURL, submitReview, editReview, deleteReview  })(AttorneyPublicProfile);
+export default connect(mapStateToProps,
+    {
+        fetchAttorneyByURL,
+        submitReview,
+        editReview,
+        deleteReview
+    })
+    (AttorneyPublicProfile);

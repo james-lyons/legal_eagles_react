@@ -16,7 +16,7 @@ export default withRouter(() => {
                 ? <Component { ...props } />
                 : <Redirect to='/' />
         )} />
-    )
+    );
 
     const AttorneyRoute = ({ component: Component, ...rest }) => (
         <Route { ...rest } render = {(props) => (
