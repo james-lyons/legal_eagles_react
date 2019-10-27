@@ -1,6 +1,18 @@
+.client-profile-div {
+    background-color: lightgreen;
+    max-width: 35%;
+    margin: 7rem auto;
+    padding: 2rem;
+    text-align: center;
+}
+
 .client-profile-h1 {
     margin-left: 1.25rem;
     margin-bottom: 1.5rem;
+}
+
+.client-profile-button {
+    margin-top: .6rem !important;
 }
 
 #client-profile-container-row {

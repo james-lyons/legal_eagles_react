@@ -3,11 +3,11 @@ import { Form, Col, Button } from 'react-bootstrap';
 import './ClientProfile.css';
 
 
-const ClientProfileComponent = (props) => {
+const ClientProfileComponent = ({ name, ...props }) => {
     return (
         <>
-            <div>
-                <h1 className="client-profile-h1">Hello, {props.name}</h1>
+            <div className="client-profile-div"> 
+                <h1 className="client-profile-h1">Hello, { name }</h1>
                 <div className="row" id="client-profile-container-row">
                     { props.errors && props.errors.map((e, i) => (
                         <div className="alert alert-danger alert-dismissible fade show"
@@ -18,7 +18,7 @@ const ClientProfileComponent = (props) => {
                             </button>    
                         </div>
                     ))}
-                    <Form noValidate validated={ props.validated } onSubmit={ props.handleSubmit }>
+                    <Form onSubmit={ props.handleSubmit }>
                         <Form.Row className="client-profile-row">
                             <Form.Group as={Col} md="6" controlId="first_name">
                                 <Form.Label>First name</Form.Label>
@@ -80,7 +80,7 @@ const ClientProfileComponent = (props) => {
                                 <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                             </Form.Group>
                         </Form.Row>
-                        <Button className="client-profile-button" type="submit">Submit</Button>
+                        <Button className="client-profile-button" type="submit">Submit Changes</Button>
                     </Form>
                 </div>
             </div>

@@ -6,6 +6,7 @@ const clientRegister = (data) => {
         return axios.post(`${ API_URL }/auth/clientRegister`, data, { withCredentials: true })
             .then(res => {
                 dispatch({ type: "CLIENT_REGISTER_FULFILLED", payload: res.data });
+                window.location.reload();
             })
             .catch(err => {
                 dispatch({ type: "CLIENT_REGISTER_REJECTED", payload: err })

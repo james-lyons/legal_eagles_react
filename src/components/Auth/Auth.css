@@ -1,16 +1,19 @@
+p {
+    font-size: .8em;
+}
+
 .dropdown-menu {
     top: 90% !important;
     left: -52% !important;
 }
 
-#auth-row {
-    /* margin-left: 0 !important;
-    margin-right: 0 !important;    */
-    justify-content: center;
+
+.auth-button {
+    margin-top: .6rem !important;
 }
 
-p {
-    font-size: .8em;
+#auth-row {
+    justify-content: center;
 }
 
 #profile-image {

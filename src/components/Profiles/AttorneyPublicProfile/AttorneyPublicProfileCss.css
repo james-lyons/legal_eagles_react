@@ -22,7 +22,28 @@
     border: 1px solid black;
     padding: 1rem;
     margin: 1rem;
-    /* max-width: 50%; */
+}
+
+.edit-and-delete-buttons {
+    margin-top: .6rem ;
+    margin-left: .7rem ;
+}
+
+.review-edit {
+    margin-top: 1em;
+}
+
+#edit-submit-button {
+    margin-top: .75rem;
+}
+
+#review-submit-button {
+    margin-top: .75rem;
+}
+
+#email-submit-button {
+    margin-top: .75rem;
+
 }
 
 #attorney-public-profile-reviews-section {

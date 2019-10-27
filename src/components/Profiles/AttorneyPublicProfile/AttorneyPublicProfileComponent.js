@@ -14,22 +14,21 @@ const AttorneyPublicProfileComponent = ({ ...props }) => {
                     <Col className="col-9" id="attorney-public-profile-reviews-section">
                         <Row>
                             <Col className="attorney-profile-content">
-                                <h1>
-                                    { props.fetched_attorney && props.fetched_attorney.name } 
-                                </h1>
-                                <h1>
-                                    { props.fetched_attorney && props.fetched_attorney.city }, { props.fetched_attorney && props.fetched_attorney.state }, { props.fetched_attorney && props.fetched_attorney.zipcode } 
-                                </h1>
-                                <h1>
+                                <h4>
+                                    Name: { props.fetched_attorney && props.fetched_attorney.name } 
+                                </h4>
+                                <h4>
+                                    Location: { props.fetched_attorney && props.fetched_attorney.city }, { props.fetched_attorney && props.fetched_attorney.state }, { props.fetched_attorney && props.fetched_attorney.zipcode } 
+                                </h4>
+                                <h4>
                                     Bio: { props.fetched_attorney && props.fetched_attorney.bio } 
-                            </h1>
+                                </h4>
                             </Col>
                         </Row>
                         <Row>
                             <Col className="attorney-profile-reviews">
-                                <h1>
-                                    Reviews: { props.fetched_attorney && props.reviewMapper(props.fetched_attorney.reviews) } 
-                                </h1>
+                                <h2>Reviews:</h2>
+                                { props.fetched_attorney && props.reviewMapper(props.fetched_attorney.reviews) } 
                             </Col>
                         </Row>
                         <Row>

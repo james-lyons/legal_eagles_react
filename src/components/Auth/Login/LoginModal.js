@@ -8,7 +8,7 @@ const LoginModal = (props) => {
         <>
             <Modal
                 {...props}
-                size="lg"
+                size="md"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
@@ -28,46 +28,44 @@ const LoginModal = (props) => {
                                     </button>    
                                 </div>
                             ))}
-                            { props.message &&
-                                <div className="alert alert-danger alert-dismissible fade show"
-                                    style={{width: '100%'}} role="alert">
-                                    { props.message }
-                                    <button className="close" data-dismiss="alert">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>    
-                                </div>
-                            }
-                        <section id="register" className="ui form">
-                            <Form noValidate validated={ props.validated } onSubmit={ props.handleSubmit }>
+                        { props.message &&
+                            <div className="alert alert-danger alert-dismissible fade show"
+                                style={{width: '100%'}} role="alert">
+                                { props.message }
+                                <button className="close" data-dismiss="alert">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>    
+                            </div>
+                        }
+                        <Form className="col-8" onSubmit={ props.handleSubmit }>
                             <Form.Row>
-                                    <Form.Group as={Col} md="12" controlId="email">
-                                        <Form.Label>Email</Form.Label>
-                                        <Form.Control
-                                            required
-                                            type="text"
-                                            name="email"
-                                            onChange={ props.handleChange}
-                                            placeholder="email"
-                                        />
-                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                    </Form.Group>
-                                </Form.Row>
-                                <Form.Row>
-                                    <Form.Group as={Col} md="12" controlId="password">
-                                        <Form.Label>Password</Form.Label>
-                                        <Form.Control
-                                            required
-                                            type="password"
-                                            name="password"
-                                            onChange={ props.handleChange}
-                                            placeholder="Password"
-                                        />
-                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                    </Form.Group>
-                                </Form.Row>
-                                <Button className="auth-button" type="submit">Submit</Button>
-                            </Form>
-                        </section>
+                                <Form.Group as={Col} md="12" controlId="email">
+                                    <Form.Label>Email</Form.Label>
+                                    <Form.Control
+                                        required
+                                        type="text"
+                                        name="email"
+                                        onChange={ props.handleChange}
+                                        placeholder="email"
+                                    />
+                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                </Form.Group>
+                            </Form.Row>
+                            <Form.Row>
+                                <Form.Group as={Col} md="12" controlId="password">
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control
+                                        required
+                                        type="password"
+                                        name="password"
+                                        onChange={ props.handleChange}
+                                        placeholder="Password"
+                                    />
+                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                </Form.Group>
+                            </Form.Row>
+                            <Button className="auth-button" type="submit">Submit</Button>
+                        </Form>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>

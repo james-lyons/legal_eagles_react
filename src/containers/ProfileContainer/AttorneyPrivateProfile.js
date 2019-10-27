@@ -16,7 +16,7 @@ class AttorneyProfile extends React.Component {
 
     componentDidMount = () => {
         const currentUser = localStorage.getItem('uid');
-        axios.get(`${ API_URL }/attorney/${ currentUser }`, { withCredentials: true })
+        axios.get(`${ API_URL }/attorney/search/id/${ currentUser }`, { withCredentials: true })
             .then(res => {
                 this.setState({
                     name: res.data.data.name,

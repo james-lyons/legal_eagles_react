@@ -12,19 +12,9 @@ import AttorneyPublicProfileComponent from '../../components/Profiles/AttorneyPu
 class AttorneyPublicProfile extends React.Component {
     state = {
         review_text: "",
-        edit_review: {
-            display: "none",
-            id: ""
-        },
         subject: "",
-        email_text: ""
-    };
-
-    reviewVisiblity = (review) => {
-        const currentUser = localStorage.getItem('uid')
-        if (review.author === currentUser) {
-            this.setState({ review_visibility: "visible" })
-        };
+        email_text: "",
+        review_display: "none"
     };
 
     componentDidMount = () => {
@@ -58,8 +48,8 @@ class AttorneyPublicProfile extends React.Component {
                     <Col className="review-div col-12">
                         <h4>Review: { review.review_text }</h4>
                     </Col>
-                    { currentUser === review.author && this.reviewButtonMapper(review._id, review.review_text) }
-                    { currentUser === review.author && this.editReview(review._id, review.review_text) }
+                    { currentUser === review.author && this.reviewButtonMapper(review._id) }
+                    { currentUser === review.author && this.editReview(review._id) }
                 </Row>
             </div>
         );
@@ -69,20 +59,24 @@ class AttorneyPublicProfile extends React.Component {
     reviewButtonMapper = (review_id) => {
         return (
             <>
-                <Button onClick={() => { this.editReviewDisplay(review_id) }}>edit</Button>
-                <Button onClick={() => { this.props.deleteReview(review_id) }}>delete</Button>
+                <div className="edit-and-delete-buttons">
+                    <Button className="edit bu" onClick={() => { this.editReviewDisplay() }}>edit</Button>
+                    <Button onClick={() => { this.props.deleteReview(review_id) }}>delete</Button>
+                </div>
             </>
         );
     };
 
-    editReviewDisplay = (review_id) => {
-        this.setState({ edit_review: { display: "", id: review_id }})
+    editReviewDisplay = () => {
+        this.state.review_display === "none" ?
+        this.setState({ review_display: "" }) :
+        this.setState({ review_display: "none" })
     }
 
     editReview = (review_id) => {
         return (
-            <Col className="review-edit col-12" style={{ display: this.state.edit_review.display }}>
-                <Form onSubmit={ () => this.props.editReview(review_id, this.state.review_text)}>
+            <Col className="review-edit col-12" style={{ display: this.state.review_display }}>
+                <Form onSubmit={ () => this.props.editReview(review_id, this.state.review_text) }>
                     <Form.Row>
                         <Form.Group as={Col} md="12" controlId="review-edit">
                             <Form.Control
@@ -97,7 +91,7 @@ class AttorneyPublicProfile extends React.Component {
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
-                    <Button className="auth-button" type="submit">Submit</Button>
+                    <Button id="edit-submit-button" type="submit">Submit</Button>
                 </Form>
             </Col>
         );
@@ -126,12 +120,86 @@ class AttorneyPublicProfile extends React.Component {
     render() {
         return (
             <>
-                <AttorneyPublicProfileComponent
-                    handleChange={ this.handleChange }
-                    handleSubmit={ this.handleSubmit }
-                    sendEmail={ this.sendEmail }
-                    reviewMapper={ this.reviewMapper }
-                />
+                <div className="attorney-public-profile">
+                    <Row>
+                        <Col className="col-3">
+                            <img className="attorney-profile-image" src={ this.props.fetched_attorney && this.props.fetched_attorney.profile_image } />
+                        </Col>
+                        <Col className="col-9" id="attorney-public-profile-reviews-section">
+                            <Row>
+                                <Col className="attorney-profile-content">
+                                    <h4>
+                                        Name: { this.props.fetched_attorney && this.props.fetched_attorney.name } 
+                                    </h4>
+                                    <h4>
+                                        Location: { this.props.fetched_attorney && this.props.fetched_attorney.city }, { this.props.fetched_attorney && this.props.fetched_attorney.state }, { this.props.fetched_attorney && this.props.fetched_attorney.zipcode } 
+                                    </h4>
+                                    <h4>
+                                        Bio: { this.props.fetched_attorney && this.props.fetched_attorney.bio } 
+                                    </h4>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className="attorney-profile-reviews">
+                                    <h2>Reviews:</h2>
+                                    { this.props.fetched_attorney && this.reviewMapper(this.props.fetched_attorney.reviews) } 
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className="col-12" id="review-col">
+                                    <Form noValidate onSubmit={ this.handleSubmit }>
+                                        <Form.Row>
+                                            <Form.Group as={Col} md="6" controlId="review">
+                                                <Form.Control
+                                                    required
+                                                    name="review_text"
+                                                    type="text"
+                                                    as="textarea"
+                                                    rows="4"
+                                                    onChange={ this.handleChange }
+                                                    placeholder="Write a review here!"
+                                                />
+                                                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                            </Form.Group>            
+                                        </Form.Row>
+                                        <Button id="review-submit-button" type="submit">Submit</Button>
+                                    </Form>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col className="col-12" id="contact-col">
+                                    <Form onSubmit={ this.sendEmail }>
+                                        <Form.Row>
+                                            <Form.Group as={Col} md="6" controlId="subject">
+                                                <Form.Control
+                                                    required
+                                                    name="subject"
+                                                    type="text"
+                                                    onChange={ this.handleChange }
+                                                    placeholder="Subject"
+                                                />
+                                            </Form.Group>
+                                        </Form.Row>
+                                        <Form.Row>
+                                            <Form.Group className="col-6" id="email-body">
+                                                <Form.Control
+                                                    required
+                                                    name="email_text"
+                                                    type="text"
+                                                    as="textarea"
+                                                    rows="4"
+                                                    onChange={ this.handleChange }
+                                                    placeholder="Write your email here"
+                                                />
+                                            </Form.Group>
+                                        </Form.Row>
+                                        <Button id="email-submit-button"type="submit">Submit</Button>
+                                    </Form>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+                </div>
             </>
         );
     };
