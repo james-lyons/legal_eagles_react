@@ -15,9 +15,10 @@ class Home extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        const currentUser = localStorage.getItem('uid');
         const specialty = this.state.specialty
         const zipcode = this.state.zipcode
-        this.props.fetchAttorneys(specialty, zipcode)
+        if (currentUser) { this.props.fetchAttorneys(specialty, zipcode) }
     };
 
     handleChange = (event) => {
