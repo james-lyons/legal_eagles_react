@@ -105,7 +105,7 @@ class AttorneyPublicProfile extends React.Component {
             subject: this.state.subject,
             email_text: this.state.email_text
         };
-        return emailjs.send('gmail', 'legal_eagles', email, `${EMAILJS}`)
+        return emailjs.send('gmail', 'legal_eagles', email, `${ EMAILJS }`)
             .then((res) => {
                 console.log('SUCCESS!', res.status, res.text);
             })
