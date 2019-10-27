@@ -39,6 +39,8 @@ const clientLogout = () => {
         .then(res => {
             localStorage.removeItem('uid');
             localStorage.removeItem('user_type');
+            localStorage.removeItem('client_name');
+            localStorage.removeItem('client_email');
             window.location.reload();
         })
         .catch(err => {

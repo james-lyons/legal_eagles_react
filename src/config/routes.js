@@ -7,8 +7,16 @@ import AttorneyPublicProfile from '../containers/ProfileContainer/AttorneyPublic
 import AttorneyPrivateProfile from '../containers/ProfileContainer/AttorneyPrivateProfile';
 
 export default withRouter(() => {
-
+    const currentUser = localStorage.getItem('uid');
     const userType = localStorage.getItem('user_type');
+
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+        <Route { ...rest } render={(props) => (
+            currentUser 
+                ? <Component { ...props } />
+                : <Redirect to='/' />
+        )} />
+    )
 
     const AttorneyRoute = ({ component: Component, ...rest }) => (
         <Route { ...rest } render = {(props) => (
@@ -26,13 +34,20 @@ export default withRouter(() => {
         )} />
     );
 
+    const redirectToHome = () => {
+        return (
+            <Redirect to="/" />
+        );
+    };
+
     return (
         <Switch>
             <Route exact path = '/' component = { Home } />
-            <Route path = '/attorney_search' component={ AttorneySearch } />
-            <Route path = '/attorney/:attorney_url' render={ props => <AttorneyPublicProfile {...props} /> }/>
+            <PrivateRoute path = '/attorney_search' component={ AttorneySearch } />
+            <PrivateRoute path = '/attorney/:attorney_url' render={ props => <AttorneyPublicProfile {...props} /> }/>
             <AttorneyRoute path = '/attorney_profile' component = { AttorneyPrivateProfile } />
             <ClientRoute path = '/client_profile' component = { ClientProfile } />
+            <Route component={ redirectToHome }/>
         </Switch>
     );
 });

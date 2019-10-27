@@ -73,8 +73,7 @@ const fetchAttorneyByURL = (attorney_url) => {
 const fetchAttorneys = (specialty, zipcode) => {
     return function(dispatch) {
         axios.get(`${ API_URL }/attorney/search`,
-            { params: { specialty, zipcode } },
-            { withCredentials: true })
+            { params: { specialty, zipcode }, withCredentials: true })
                 .then(res => {
                     dispatch({type: "FETCH_ATTORNEYS_FULFILLED", payload: res.data})
                 })
