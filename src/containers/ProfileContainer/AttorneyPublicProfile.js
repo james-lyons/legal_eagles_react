@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import emailjs from 'emailjs-com';
-import EMAILJS_KEY from '../../invisibleConstants';
 import { Col, Row, Form, Button } from 'react-bootstrap';
 import { fetchAttorneyByURL } from '../../actions/attorneyActions';
 import { submitReview } from '../../actions/reviewAction';
@@ -99,6 +98,7 @@ class AttorneyPublicProfile extends React.Component {
 
     sendEmail = (event) => {
         event.preventDefault();
+        const EMAILJS = process.env.EMAILJS
         const client_name = localStorage.getItem('client_name')
         const client_email = localStorage.getItem('client_email')
         const email = {
@@ -108,7 +108,7 @@ class AttorneyPublicProfile extends React.Component {
             subject: this.state.subject,
             email_text: this.state.email_text
         };
-        return emailjs.send('gmail', 'legal_eagles', email, `${EMAILJS_KEY}`)
+        return emailjs.send('gmail', 'legal_eagles', email, EMAILJS)
             .then((res) => {
                 console.log('SUCCESS!', res.status, res.text);
             })
