@@ -35,16 +35,16 @@ const attorneyLogin = (email, password) => {
 };
 
 const attorneyLogout = () => {
-        axios.post(`${ API_URL }/auth/logout`, { withCredentials: true })
-            .then(res => {
-                localStorage.removeItem('uid');
-                localStorage.removeItem('user_type');
-                window.location.reload();
-            })
-            .catch(err => {
-                return { type: "USER_LOGOUT_REJECTED", payload: err };
-            });
-        return { type: "USER_LOGOUT_FULFILLED" }
+    axios.post(`${ API_URL }/auth/logout`, { withCredentials: true })
+        .then(res => {
+            localStorage.removeItem('uid');
+            localStorage.removeItem('user_type');
+            window.location.reload();
+        })
+        .catch(err => {
+            return { type: "USER_LOGOUT_REJECTED", payload: err };
+        });
+    return { type: "USER_LOGOUT_FULFILLED" }
 };
 
 const fetchAttorneyById = (attorney_id) => {

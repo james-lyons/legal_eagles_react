@@ -33,6 +33,9 @@ class Home extends React.Component {
                 <div className = "homepage">
                     <div className="homepage-header">
                         <div className="search_bar justify-content-md-center">
+                        <div className="home-h4-div">
+                            <h4>Must be logged in to search</h4>
+                        </div>
                             <Form onSubmit={ this.handleSubmit } className="search-form justify-content-md-center">
                                 <Form.Row className="justify-content-md-center">
                                     <Form.Group as={Col} md="5" controlId="specialty">
