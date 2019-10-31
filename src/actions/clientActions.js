@@ -9,7 +9,7 @@ const clientRegister = (data) => {
                 window.location.reload();
             })
             .catch(err => {
-                dispatch({ type: "CLIENT_REGISTER_REJECTED", payload: err })
+                dispatch({ type: "CLIENT_REGISTER_REJECTED", payload: err.response.data })
             });
     };
 };
@@ -25,11 +25,11 @@ const clientLogin = (email, password) => {
                     localStorage.setItem('client_name', res.data.data.name);
                     localStorage.setItem('client_email', res.data.data.email);
                     dispatch({ type: "CLIENT_LOGIN_FULFILLED", payload: res.data.data });
-                    dispatch({ type: "USER_LOGIN_FULFILLED", payload: res.data });
+                    dispatch({ type: "USER_LOGIN_FULFILLED", payload: res.data.data });
                     window.location.reload();
                 })
                 .catch(err => {
-                    dispatch({ type: "CLIENT_LOGIN_REJECTED", payload: err });
+                    dispatch({ type: "CLIENT_LOGIN_REJECTED", payload: err.response.data });
                 });
     };
 };

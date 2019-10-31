@@ -12,13 +12,13 @@ function clientReducer(state = {
     
     switch(action.type) {
         case "CLIENT_REGISTER_FULFILLED": 
-            return {...state};
+            return {...state };
 
         case "CLIENT_REGISTER_REJECTED": 
             return {
                 ...state,
-                errors: action.payload.response.data.errors,
-                message: action.payload.response.data.message
+                errors: action.payload.errors,
+                message: action.payload.message
             };
 
         case "CLIENT_LOGIN_FULFILLED": 
@@ -33,7 +33,11 @@ function clientReducer(state = {
             };
 
         case "CLIENT_LOGIN_REJECTED":
-            return { ...state, errors: action.payload.response.data.errors };
+            return {
+                ...state,
+                errors: action.payload.errors,
+                message: action.payload.message
+            };
 
         case "CLIENT_LOGOUT_FULFILLED": 
             return { ...state, user_id: null, user_type: null };
