@@ -31,7 +31,7 @@ const LoginModal = (props) => {
                         { props.clientMessage &&
                             <div className="alert alert-danger alert-dismissible fade show"
                                 style={{width: '100%'}} role="alert">
-                                { props.message }
+                                { props.clientMessage }
                                 <button className="close" data-dismiss="alert">
                                     <span aria-hidden="true">&times;</span>
                                 </button>    
@@ -49,7 +49,7 @@ const LoginModal = (props) => {
                         { props.attorneyMessage &&
                             <div className="alert alert-danger alert-dismissible fade show"
                                 style={{width: '100%'}} role="alert">
-                                { props.message }
+                                { props.attorneyMessage }
                                 <button className="close" data-dismiss="alert">
                                     <span aria-hidden="true">&times;</span>
                                 </button>    
