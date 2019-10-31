@@ -19,7 +19,7 @@ const LoginModal = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     <div className="row" id="auth-row">
-                        { props.errors && props.errors.map((e, i) => (
+                        { props.clientErrors && props.clientErrors.map((e, i) => (
                                 <div className="alert alert-danger alert-dismissible fade show"
                                     style={{width: '100%'}} role="alert" key={ i }>
                                     { e.message }
@@ -28,7 +28,25 @@ const LoginModal = (props) => {
                                     </button>    
                                 </div>
                             ))}
-                        { props.message &&
+                        { props.clientMessage &&
+                            <div className="alert alert-danger alert-dismissible fade show"
+                                style={{width: '100%'}} role="alert">
+                                { props.message }
+                                <button className="close" data-dismiss="alert">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>    
+                            </div>
+                        }
+                        { props.attorneyErrors && props.attorneyErrors.map((e, i) => (
+                                <div className="alert alert-danger alert-dismissible fade show"
+                                    style={{width: '100%'}} role="alert" key={ i }>
+                                    { e.message }
+                                    <button className="close" data-dismiss="alert">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>    
+                                </div>
+                            ))}
+                        { props.attorneyMessage &&
                             <div className="alert alert-danger alert-dismissible fade show"
                                 style={{width: '100%'}} role="alert">
                                 { props.message }
@@ -78,8 +96,10 @@ const LoginModal = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        errors: state.attorneyReducer.errors,
-        message: state.attorneyReducer.message
+        attorneyErrors: state.attorneyReducer.errors,
+        attorneyMessage: state.attorneyReducer.message,
+        clientErrors: state.clientReducer.errors,
+        clientMessage: state.clientReducer.message
     };
 };
 
