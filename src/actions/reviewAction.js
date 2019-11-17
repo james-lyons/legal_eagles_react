@@ -2,8 +2,6 @@ import axios from 'axios';
 import API_URL from '../constants';
 
 const submitReview = (review_text, attorney_id) => {
-    console.log('hi')
-    console.log(review_text, attorney_id)
     return dispatch => {
         return axios.post(`${ API_URL }/review`,
             { review_text, attorney_id },
