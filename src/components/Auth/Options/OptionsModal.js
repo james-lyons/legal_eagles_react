@@ -6,14 +6,14 @@ const OptionsModal = (props) => {
         <>
             <Modal
                 {...props}
-                size="lg"
+                size="sm"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        <Button value = "attorney" onClick = { props.selectModal }>For Attorneys</Button>
-                        <Button value = "client" onClick = { props.selectModal }>For Clients</Button>
+                        <Button className="auth-modal" value = "attorney" onClick = { props.selectModal }>Attorneys</Button>
+                        <Button className="auth-modal" value = "client" onClick = { props.selectModal }>Clients</Button>
                     </Modal.Title>
                 </Modal.Header>
             </Modal>

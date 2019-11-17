@@ -55,7 +55,7 @@ const LoginModal = (props) => {
                                 </button>    
                             </div>
                         }
-                        <Form className="col-8" onSubmit={ props.handleSubmit }>
+                        <Form className="col-12" onSubmit={ props.handleSubmit }>
                             <Form.Row>
                                 <Form.Group as={Col} md="12" controlId="email">
                                     <Form.Label>Email</Form.Label>
@@ -86,9 +86,6 @@ const LoginModal = (props) => {
                         </Form>
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick = { props.onHide }>Close</Button>
-                </Modal.Footer>
             </Modal>
         </>
     );

@@ -6,12 +6,9 @@ body {
     height: 100vh;
     background-image: url("https://landwehrlawmn.com/wp-content/uploads/2015/03/law-wallpapers-hd-1080p-1920x1080-desktop-02.jpg");
     background-size: cover;
+    background-attachment: fixed;
     background-repeat: no-repeat;
     overflow-y: auto;
-}
-
-.navbar {
-    background-color: white !important;
 }
 
 .homepage-header {
@@ -19,11 +16,19 @@ body {
 }
 
 .home-h4-div {
-    background-color: rgba(255,255,255,.8);
+    background-color: rgba(0,0,0,.65);
     max-width: 25%;
     margin: 1rem auto;
     padding-top: .5rem;
     padding-bottom: .1rem;
+    border-radius: .3rem;
+}
+
+.home-header-h4 {
+    padding: .3rem;
+    font-weight: 400;
+    color: whitesmoke;
+    font-size: 1.7rem;
 }
 
 .search_bar {
@@ -49,14 +54,15 @@ body {
     max-width: 60vw;
     margin: 6em auto 0;
     padding: 1em;
-    background-color: rgba(0,0,0,.65);
+    background-color: rgba(0,0,0,.5);
     overflow-y: auto;
 }
 
 .home-h4 {
     padding: .5rem;
-    font-weight: 400;
-    color: white;
+    font-weight: 500;
+    color: whitesmoke;
+    font-size: 1.7rem;
 }
 
 /* Media Queries */
@@ -70,9 +76,6 @@ body {
         max-height: 55vh;
         max-width: 70vw;
         margin: 3em auto;
-        padding: 1em;
-        background-color: whitesmoke;
-        overflow-y: auto;
     }
 }
 
@@ -85,9 +88,10 @@ body {
         max-height: 60vh;
         max-width: 80vw;
         margin: 3em auto 0;
-        padding: 1em;
-        background-color: whitesmoke;
-        overflow-y: auto;
+    }
+
+    .home-h4-div {
+        max-width: 88%;
     }
 }
 
@@ -99,8 +103,5 @@ body {
     .home-content {
         max-width: 90vw;
         margin: 4em auto 0;
-        padding: 1em;
-        background-color: whitesmoke;
-        overflow-y: auto;
     }
 }

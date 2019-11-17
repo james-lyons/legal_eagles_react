@@ -1,4 +1,4 @@
-
+/* 
 .attorney-public-profile {
     padding: 3rem;
 }
@@ -58,4 +58,57 @@
 #contact-col {
     padding-left: 0;
     margin-top: 1rem;
+}
+
+ */
+
+.attorney-profile-section {
+    padding: 2rem 0;
+}
+
+.attorney-profile-image {
+    border: .3rem solid black;
+}
+
+.attorney-profile-content {
+    background-color: whitesmoke;
+    margin: 0 1rem;
+    padding: 2rem;
+    border: .3rem solid black;
+    border-radius: .2rem;
+}
+
+.attorney-profile-reviews-section {
+    max-height: 70vh;
+    overflow-y: scroll;
+    background-color: whitesmoke;
+    padding: 1rem;
+    border-radius: .2rem;
+}
+
+.review-card {
+    padding: .5rem;
+}
+
+.review-form-section {
+    background-color: whitesmoke;
+    padding: 1rem;
+    margin-top: 2rem;
+    border: .3rem solid black;
+    border-radius: .2rem;
+}
+
+.review-buttons {
+    margin-top: 1rem;
+    margin-right: .5rem;
+}
+
+.review-edit-form {
+    margin-top: 1.5rem;
+}
+
+@media screen and (max-width: 767px) {
+    .attorney-profile-image-div {
+        min-width: 100%;
+    }
 }

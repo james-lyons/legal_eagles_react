@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 import { Col, Form, Button } from 'react-bootstrap';
 import { fetchAttorneys } from '../../actions/attorneyActions';
 import './Home.css';
+import './SearchBarComponent.css';
+
 
 class Home extends React.Component {
     state = {
@@ -18,13 +20,14 @@ class Home extends React.Component {
         const currentUser = localStorage.getItem('uid');
         const specialty = this.state.specialty
         const zipcode = this.state.zipcode
-        if (currentUser) { this.props.fetchAttorneys(specialty, zipcode) }
+        this.props.fetchAttorneys(specialty, zipcode)
     };
 
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         });
+        console.log(this.state)
     };
 
     render() {
@@ -32,18 +35,17 @@ class Home extends React.Component {
             <>
                 <div className = "homepage">
                     <div className="homepage-header">
-                        <div className="search_bar justify-content-md-center">
-                        <div className="home-h4-div">
-                            <h4>Must be logged in to search</h4>
-                        </div>
-                            <Form onSubmit={ this.handleSubmit } className="search-form justify-content-md-center">
-                                <Form.Row className="justify-content-md-center">
-                                    <Form.Group as={Col} md="5" controlId="specialty">
-                                        <Form.Control
+                        <div className="s01">
+                            <form onSubmit={ this.handleSubmit }>
+                                <div className="inner-form">
+                                    <div className="input-field first-wrap">
+                                        <select
+                                            class="form-control form-control-md"
+                                            id="specialty"
                                             name="specialty"
                                             onChange={ this.handleChange }
-                                            as="select"
-                                        >
+                                            placeholder="Restaurant Name"
+                                        > 
                                             <option value="">Select Specialty</option>
                                             <option value="Admiralty">Admiralty Law</option>
                                             <option value="Animal Rights">Animal Rights Law</option>
@@ -67,27 +69,27 @@ class Home extends React.Component {
                                             <option value="Tax">Tax Law</option>
                                             <option value="Tort">Tort Law</option>
                                             <option value="Trust and Estate">Trust and Estate Law</option>
-                                        </Form.Control>
-                                    </Form.Group>
-                                    <Form.Group as={Col} md="5" controlId="zipcode">
-                                        <Form.Control
-                                            type="zipcode"
+                                        </select>
+                                    </div>
+                                    <div className="input-field first-wrap">
+                                        <input
                                             name="zipcode"
-                                            onChange={ this.handleChange}
-                                            placeholder="zipcode"
+                                            type="text"
+                                            onChange={ this.handleChange }
+                                            placeholder="Zipcode"
                                         />
-                                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                    </Form.Group>
-                                <Button className="home-search-button" id="attorney-search-button" type="submit">Search</Button>
-                                </Form.Row>
-                            </Form>
+                                    </div>
+                                    <div className="input-field third-wrap">
+                                        <button className="btn-search" id="search-button" type="submit"><i className="fa fa-search" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div className="home-content">
-                            <h4 className="home-h4">Need help finding legal representation? Afraid that seeking restitution for a wrong commited unto you would be too costly, take too much time, or be unwinnable? Sign up for a free account and start browsing attorneys in your area, it will only cost a few minutes and you may find just what you need.</h4>
-                            <h4 className="home-h4">Every years, more and more attorneys enter the work force at a rate that the market is incapable of baring. Sign up for a free account and start finding clients who need legal representation for cases that may never have been litigated.</h4>
-                        </div>
-                        { this.props.results && <Redirect to={{ pathname:'/attorney_search' }} /> }
                     </div>
+                    <div className="home-content">
+                        <h4 className="home-h4">Need help finding legal representation? Sign up for a free account and start browsing attorneys in your area, it will only cost a few minutes and you may find just what you need.</h4>
+                    </div>
+                    { this.props.results && <Redirect to={{ pathname:'/attorney_search' }} /> }
                 </div>
             </>
         );

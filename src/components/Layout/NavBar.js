@@ -13,14 +13,16 @@ const NavBar = () => {
 
     const links = (
         <>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Navbar.Brand href="/">Legal Eagles</Navbar.Brand>
+            <Navbar collapseOnSelect expand="lg" className="navbar">
+                <Navbar.Brand className="navbar-a" href="/">
+                    <span>
+                        <img className="nav-icon"src="./eagle_icon.png" alt="icon"/>
+                    </span>
+                    Legal Eagles
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Nav.Link href="/attorney_search">Attorney Search</Nav.Link>
-                    </Nav>
-                    <Nav>
+                    <Nav className="nav-right">
                         <Register />
                         <Login />
                     </Nav>
@@ -31,16 +33,18 @@ const NavBar = () => {
 
     const attorneyLinks = (
         <>
-            <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
-                <Navbar.Brand href="/">Legal Eagles</Navbar.Brand>
+            <Navbar collapseOnSelect expand="md" className="navbar">
+                <Navbar.Brand className="navbar-a" href="/">
+                    <span>
+                        <img className="nav-icon"src="./eagle_icon.png" alt="icon"/>
+                    </span>
+                    Legal Eagles
+                </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Nav.Link href="/attorney_search">Attorney Search</Nav.Link>
-                    </Nav>
-                    <NavDropdown title="Account" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href = "/attorney_profile">Account Settings</NavDropdown.Item>
-                        <NavDropdown.Item onClick = { attorneyLogout }>Logout</NavDropdown.Item>
+                    <NavDropdown title="Account" id="collasible-nav-dropdown" className="nav-right">
+                        <NavDropdown.Item className="navbar-auth-as" href = "/attorney_profile">Account Settings</NavDropdown.Item>
+                        <NavDropdown.Item className="navbar-auth-as" onClick = { attorneyLogout }>Logout</NavDropdown.Item>
                     </NavDropdown>
                 </Navbar.Collapse>
             </Navbar>
@@ -49,16 +53,13 @@ const NavBar = () => {
 
     const clientLinks = (
         <>
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                <Navbar.Brand href="/">Legal Eagles</Navbar.Brand>
+            <Navbar collapseOnSelect expand="lg" className="navbar">
+                <Navbar.Brand className="navbar-a" href="/">Legal Eagles</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="mr-auto">
-                        <Nav.Link href="/attorney_search">Attorney Search</Nav.Link>
-                    </Nav>
-                    <NavDropdown title="Account" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href = "/client_profile">Account Settings</NavDropdown.Item>
-                        <NavDropdown.Item onClick = { clientLogout }>Logout</NavDropdown.Item>
+                    <NavDropdown title="Account" id="collasible-nav-dropdown" className="nav-right">
+                        <NavDropdown.Item className="navbar-auth-as" href = "/client_profile">Account Settings</NavDropdown.Item>
+                        <NavDropdown.Item className="navbar-auth-as" onClick = { clientLogout }>Logout</NavDropdown.Item>
                     </NavDropdown>
                 </Navbar.Collapse>
             </Navbar>

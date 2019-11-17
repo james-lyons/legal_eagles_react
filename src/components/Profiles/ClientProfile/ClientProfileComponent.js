@@ -18,7 +18,7 @@ const ClientProfileComponent = ({ name, ...props }) => {
                             </button>    
                         </div>
                     ))}
-                    <Form onSubmit={ props.handleSubmit }>
+                    <Form onSubmit={ props.handleSubmit } className="col-12">
                         <Form.Row className="client-profile-row">
                             <Form.Group as={Col} md="6" controlId="first_name">
                                 <Form.Label>First name</Form.Label>

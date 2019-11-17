@@ -5,7 +5,7 @@ import './AttorneyPrivateProfileCss.css'
 const AttorneyPrivateProfileComponent = (props) => {
     return (
         <>
-            <div className="private-attorney-profile col-8">
+            <div id="private-attorney-profile" className="col-8">
                 <Form onSubmit={ props.handleSubmit }>
                     <Form.Row>
                         <Form.Group as={Col} md="6" controlId="name">

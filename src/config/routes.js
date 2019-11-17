@@ -43,7 +43,7 @@ export default withRouter(() => {
     return (
         <Switch>
             <Route exact path = '/' component = { Home } />
-            <PrivateRoute path = '/attorney_search' component={ AttorneySearch } />
+            <Route path = '/attorney_search' component={ AttorneySearch } />
             <PrivateRoute path = '/attorney/:attorney_url' component = { AttorneyPublicProfile } />
             <AttorneyRoute path = '/attorney_profile' component = { AttorneyPrivateProfile } />
             <ClientRoute path = '/client_profile' component = { ClientProfile } />

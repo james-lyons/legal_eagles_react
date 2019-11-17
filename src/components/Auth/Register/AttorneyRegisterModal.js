@@ -37,7 +37,7 @@ const AttorneyRegisterModal = (props) => {
                                 </button>    
                             </div>
                         }
-                        <Form noValidate validated={ props.validated } onSubmit={ props.handleSubmit }>
+                        <Form className="col-12" onSubmit={ props.handleSubmit }>
                             <Form.Row>
                                 <Form.Group as={Col} md="6" controlId="name">
                                     <Form.Label>Full name</Form.Label>
@@ -260,9 +260,6 @@ const AttorneyRegisterModal = (props) => {
                         </Form>
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick = { props.onHide }>Close</Button>
-                </Modal.Footer>
             </Modal>
         </>
     );

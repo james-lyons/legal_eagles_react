@@ -1,7 +1,35 @@
 .navbar {
-    padding: .2rem 1rem !important;
+    padding: .7rem 1rem !important;
+    background-color: brown;
 }
 
-.btn-primary {
-    margin: 0 .2rem;
+.navbar a {
+    color: white;
+}
+
+.navbar a:hover {
+    color: white;
+}
+
+.navbar-auth-as {
+    color: black !important;
+}
+
+.nav-icon {
+    width: 2.3rem;
+    margin-bottom: .6rem;
+    margin-right: .4rem;
+}
+
+.navbar-brand {
+    color: whitesmoke !important;
+}
+
+.btn-light {
+    margin: 0 .35rem;
+    padding: .6rem .8rem;
+}
+
+.nav-right {
+    margin-left: auto;
 }

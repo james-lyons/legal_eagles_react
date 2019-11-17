@@ -1,6 +1,20 @@
-.private-attorney-profile {
+#private-attorney-profile {
     background-color: lightgreen;
     margin: 2rem auto;
     padding: 2rem;
     text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+    #private-attorney-profile {
+        max-width: 80% !important;
+        padding: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #private-attorney-profile {
+        max-width: 90% !important;
+        padding: 1rem;
+    }
 }

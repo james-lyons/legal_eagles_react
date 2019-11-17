@@ -5,6 +5,7 @@ import { attorneyLogin } from '../../actions/attorneyActions';
 import { clientLogin } from '../../actions/clientActions';
 import OptionsModal from '../../components/Auth/Options/OptionsModal';
 import LoginModal from '../../components/Auth/Login/LoginModal';
+import './ModalCss.css'
 
 class Login extends React.Component {
     state = {
@@ -82,7 +83,7 @@ class Login extends React.Component {
         return (
             <>
                 <ButtonToolbar>
-                    <Button variant="primary" onClick = { () => this.setModalShow(true) }>
+                    <Button variant="light" onClick = { () => this.setModalShow(true) }>
                         Login
                     </Button>
 

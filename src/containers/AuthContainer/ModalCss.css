@@ -1,0 +1,13 @@
+
+.auth-modal {
+    width: 44%;
+    margin: 0 2.5%;
+}
+
+.modal-header {
+    border-bottom: none !important;
+}
+
+#contained-modal-title-vcenter {
+    width: 100%;
+}

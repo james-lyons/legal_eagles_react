@@ -18,7 +18,7 @@ const ClientRegisterModal = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <div className="row" id="auth-row">
+                    <div className="row" id="auth-row">
                         { props.errors && props.errors.map((e, i) => (
                             <div className="alert alert-danger alert-dismissible fade show"
                                 style={{width: '100%'}} role="alert" key={ i }>
@@ -38,8 +38,8 @@ const ClientRegisterModal = (props) => {
                             </div>
                         }
                         <section id="register" className="ui form">
-                            <Form noValidate validated={ props.validated } onSubmit={ props.handleSubmit }>
-                            <Form.Row>
+                            <Form className="col-12" onSubmit={ props.handleSubmit }>
+                                <Form.Row>
                                     <Form.Group as={Col} md="12" controlId="name">
                                         <Form.Label>Full name</Form.Label>
                                         <Form.Control
@@ -101,9 +101,6 @@ const ClientRegisterModal = (props) => {
                         </section>
                     </div>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button onClick = { props.onHide }>Close</Button>
-                </Modal.Footer>
             </Modal>
         </>
     );

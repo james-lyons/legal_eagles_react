@@ -22,6 +22,7 @@ class AttorneyPublicProfile extends React.Component {
         this.setState({
             [event.target.name]: event.target.value
         });
+        console.log(this.state)
     };
 
     handleSubmit = (event) => {
@@ -31,22 +32,60 @@ class AttorneyPublicProfile extends React.Component {
         this.props.submitReview(review_text, attorney_id);
     };
 
+    reviews = () => {
+        return (
+            <div className="attorney-profile-reviews-section col-12">
+                <div className="row review-container">
+                    { this.props.fetched_attorney && this.reviewMapper(this.props.fetched_attorney.reviews) }
+                </div>
+            </div>
+        ); 
+    };
+
     reviewMapper = (reviews) => {
         const currentUser = localStorage.getItem('uid')
         const reviewArray = reviews.map(review => 
-            <div className="review-card">
-                <Row>
-                    <Col className="review-name-div col-6">
-                        <h4>Reviewer: { review.author_name }</h4>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col className="review-div col-12">
-                        <h4>Review: { review.review_text }</h4>
-                    </Col>
-                    { currentUser === review.author && this.reviewButtonMapper(review._id) }
-                    { currentUser === review.author && this.editReview(review._id) }
-                </Row>
+            // <div className="review-card">
+            //     <Row>
+            //         <Col className="review-name-div col-6">
+            //             <h4>Reviewer: { review.author_name }</h4>
+            //         </Col>
+            //     </Row>
+            //     <Row>
+            //         <Col className="review-div col-12">
+            //             <h4>Review: { review.review_text }</h4>
+            //         </Col>
+            //         { currentUser === review.author && this.reviewButtonMapper(review._id) }
+            //         { currentUser === review.author && this.editReview(review._id) }
+            //     </Row>
+            // </div>
+            <div className="col-md-12 mb-5">
+            <div className="card h-100 review-card">
+                { this.props.reviewErrors && this.props.reviewErrors.map((err, i) => (
+                    <div className="alert alert-danger alert-dismissible fade show"
+                        style={{ width: '100%' }} role="alert" key={ i }>
+                        { err.message }
+                            <button className="close" data-dismiss="alert">
+                                <spam aria-hidden="true">&times;</spam>
+                            </button>
+                    </div>
+                    ))}
+                    { this.props.reviewMessage && 
+                        <div className="alert alert-danger alert-dismissible fade show"
+                            style={{ width: '100% '}} role="alert">
+                            { this.props.reviewMessage }
+                            <button className="close" data-dismiss="alert">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    }
+                <div className="card-body">
+                    <h3 className="card-title">{ review.author_name }</h3>
+                    <p className="card-text">{ review.review_text }</p>
+                </div>
+                { review.author === currentUser && this.reviewButtonMapper(review._id)}
+                { review.author === currentUser && this.editReview(review._id) }
+            </div>
             </div>
         );
         return reviewArray;
@@ -56,8 +95,8 @@ class AttorneyPublicProfile extends React.Component {
         return (
             <>
                 <div className="edit-and-delete-buttons">
-                    <Button className="edit bu" onClick={() => { this.editReviewDisplay() }}>edit</Button>
-                    <Button onClick={() => { this.props.deleteReview(review_id) }}>delete</Button>
+                    <Button className="review-buttons" onClick={() => { this.editReviewDisplay() }}>edit</Button>
+                    <Button className="review-buttons" onClick={() => { this.props.deleteReview(review_id) }}>delete</Button>
                 </div>
             </>
         );
@@ -71,7 +110,7 @@ class AttorneyPublicProfile extends React.Component {
 
     editReview = (review_id) => {
         return (
-            <Col className="review-edit col-12" style={{ display: this.state.review_display }}>
+            <Col className="review-edit-form col-12" style={{ display: this.state.review_display }}>
                 <Form onSubmit={ () => this.props.editReview(review_id, this.state.review_text) }>
                     <Form.Row>
                         <Form.Group as={Col} md="12" controlId="review-edit">
@@ -82,12 +121,12 @@ class AttorneyPublicProfile extends React.Component {
                                 as="textarea"
                                 rows="4"
                                 onChange={ this.handleChange}
-                                placeholder="Edit your review here!"
+                                placeholder="Edit your review here!" 
                             />
                             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                         </Form.Group>
                     </Form.Row>
-                    <Button id="edit-submit-button" type="submit">Submit</Button>
+                    <Button id="edit-submit-button" className="review-buttons" type="submit">Submit</Button>
                 </Form>
             </Col>
         );
@@ -116,37 +155,129 @@ class AttorneyPublicProfile extends React.Component {
 
     render() {
         return (
+            // <>
+            //     <div className="attorney-public-profile">
+            //         <Row>
+            //             <Col className="col-3">
+            //                 <img className="attorney-profile-image" src={ this.props.fetched_attorney && this.props.fetched_attorney.profile_image } alt="" />
+            //             </Col>
+            //             <Col className="col-9" id="attorney-public-profile-reviews-section">
+            //                 <Row>
+            //                     <Col className="attorney-profile-content">
+            //                         <h4>
+            //                             Name: { this.props.fetched_attorney && this.props.fetched_attorney.name } 
+            //                         </h4>
+            //                         <h4>
+            //                             Location: { this.props.fetched_attorney && this.props.fetched_attorney.city }, { this.props.fetched_attorney && this.props.fetched_attorney.state }, { this.props.fetched_attorney && this.props.fetched_attorney.zipcode } 
+            //                         </h4>
+            //                         <h4>
+            //                             Bio: { this.props.fetched_attorney && this.props.fetched_attorney.bio } 
+            //                         </h4>
+            //                     </Col>
+            //                 </Row>
+            //                 <Row>
+            //                     <Col className="attorney-profile-reviews">
+            //                         <h2>Reviews:</h2>
+            //                         { this.props.fetched_attorney && this.reviewMapper(this.props.fetched_attorney.reviews) } 
+            //                     </Col>
+            //                 </Row>
+            //                 <Row>
+            //                     <Col className="col-12" id="review-col">
+            //                         <Form noValidate onSubmit={ this.handleSubmit }>
+            //                             <Form.Row>
+            //                                 <Form.Group as={Col} md="6" controlId="review">
+            //                                     <Form.Control
+            //                                         required
+            //                                         name="review_text"
+            //                                         type="text"
+            //                                         as="textarea"
+            //                                         rows="4"
+            //                                         onChange={ this.handleChange }
+            //                                         placeholder="Write a review here!"
+            //                                     />
+            //                                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            //                                 </Form.Group>            
+            //                             </Form.Row>
+            //                             <Button id="review-submit-button" type="submit">Submit</Button>
+            //                         </Form>
+            //                     </Col>
+            //                 </Row>
+            //                 <Row>
+            //                     <Col className="col-12" id="contact-col">
+            //                         <Form onSubmit={ this.sendEmail }>
+            //                             <Form.Row>
+            //                                 <Form.Group as={Col} md="6" controlId="subject">
+            //                                     <Form.Control
+            //                                         required
+            //                                         name="subject"
+            //                                         type="text"
+            //                                         onChange={ this.handleChange }
+            //                                         placeholder="Subject"
+            //                                     />
+            //                                 </Form.Group>
+            //                             </Form.Row>
+            //                             <Form.Row>
+            //                                 <Form.Group className="col-6" id="email-body">
+            //                                     <Form.Control
+            //                                         required
+            //                                         name="email_text"
+            //                                         type="text"
+            //                                         as="textarea"
+            //                                         rows="4"
+            //                                         onChange={ this.handleChange }
+            //                                         placeholder="Write your email here"
+            //                                     />
+            //                                 </Form.Group>
+            //                             </Form.Row>
+            //                             <Button id="email-submit-button"type="submit">Submit</Button>
+            //                         </Form>
+            //                     </Col>
+            //                 </Row>
+            //             </Col>
+            //         </Row>
+            //     </div>
+            // </>
             <>
-                <div className="attorney-public-profile">
+            <div id="attorney-profile">
+                <div className="container">
+                    <div className="row align-items-center my-12 attorney-profile-section">
+                        <div className="col-3 attorney-profile-image-div">
+                            <img className="img-fluid rounded mb-4 attorney-profile-image"
+                                src={ this.props.fetched_attorney && this.props.fetched_attorney.profile_image } alt="" />
+                        </div>
+                        <div className="col-lg-7 attorney-profile-content">
+                            <h4>Name: { this.props.fetched_attorney && this.props.fetched_attorney.name }</h4>
+                            <h4>Specialty: {this.props.fetched_attorney && this.props.fetched_attorney.specialty } law</h4> 
+                            <h4>Location: { this.props.fetched_attorney && this.props.fetched_attorney.city }, { this.props.fetched_attorney && this.props.fetched_attorney.state }, { this.props.fetched_attorney && this.props.fetched_attorney.zipcode }</h4>
+                        </div>
+                    </div>
+                    { this.props.fetched_attorney && this.props.fetched_attorney.reviews.length && this.reviews() }
                     <Row>
-                        <Col className="col-3">
-                            <img className="attorney-profile-image" src={ this.props.fetched_attorney && this.props.fetched_attorney.profile_image } alt="" />
-                        </Col>
-                        <Col className="col-9" id="attorney-public-profile-reviews-section">
-                            <Row>
-                                <Col className="attorney-profile-content">
-                                    <h4>
-                                        Name: { this.props.fetched_attorney && this.props.fetched_attorney.name } 
-                                    </h4>
-                                    <h4>
-                                        Location: { this.props.fetched_attorney && this.props.fetched_attorney.city }, { this.props.fetched_attorney && this.props.fetched_attorney.state }, { this.props.fetched_attorney && this.props.fetched_attorney.zipcode } 
-                                    </h4>
-                                    <h4>
-                                        Bio: { this.props.fetched_attorney && this.props.fetched_attorney.bio } 
-                                    </h4>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className="attorney-profile-reviews">
-                                    <h2>Reviews:</h2>
-                                    { this.props.fetched_attorney && this.reviewMapper(this.props.fetched_attorney.reviews) } 
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className="col-12" id="review-col">
-                                    <Form noValidate onSubmit={ this.handleSubmit }>
+                        <Col className="col-12">
+                            <div className="review-form-section">
+                                <div className="review-form-div">
+                                    <h3>Leave a review!</h3>
+                                    { this.props.reviewErrors && this.props.reviewErrors.map((err, i) => (
+                                        <div className="alert alert-danger alert-dismissible fade show"
+                                            style={{ width: '100%' }} role="alert" key={ i }>
+                                            { err.message }
+                                                <button className="close" data-dismiss="alert">
+                                                    <spam aria-hidden="true">&times;</spam>
+                                                </button>
+                                        </div>
+                                        ))}
+                                        { this.props.reviewMessage && 
+                                            <div className="alert alert-danger alert-dismissible fade show"
+                                                style={{ width: '100% '}} role="alert">
+                                                { this.props.reviewMessage }
+                                                <button className="close" data-dismiss="alert">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        }
+                                    <Form onSubmit={ this.handleSubmit }>
                                         <Form.Row>
-                                            <Form.Group as={Col} md="6" controlId="review">
+                                            <Form.Group className="col-12" controlId="edit-review">
                                                 <Form.Control
                                                     required
                                                     name="review_text"
@@ -154,50 +285,19 @@ class AttorneyPublicProfile extends React.Component {
                                                     as="textarea"
                                                     rows="4"
                                                     onChange={ this.handleChange }
-                                                    placeholder="Write a review here!"
-                                                />
-                                                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                                            </Form.Group>            
-                                        </Form.Row>
-                                        <Button id="review-submit-button" type="submit">Submit</Button>
-                                    </Form>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col className="col-12" id="contact-col">
-                                    <Form onSubmit={ this.sendEmail }>
-                                        <Form.Row>
-                                            <Form.Group as={Col} md="6" controlId="subject">
-                                                <Form.Control
-                                                    required
-                                                    name="subject"
-                                                    type="text"
-                                                    onChange={ this.handleChange }
-                                                    placeholder="Subject"
+                                                    placeholder="Leave a review!"
                                                 />
                                             </Form.Group>
                                         </Form.Row>
-                                        <Form.Row>
-                                            <Form.Group className="col-6" id="email-body">
-                                                <Form.Control
-                                                    required
-                                                    name="email_text"
-                                                    type="text"
-                                                    as="textarea"
-                                                    rows="4"
-                                                    onChange={ this.handleChange }
-                                                    placeholder="Write your email here"
-                                                />
-                                            </Form.Group>
-                                        </Form.Row>
-                                        <Button id="email-submit-button"type="submit">Submit</Button>
+                                        <Button className="review-buttons" type="submit">Submit</Button>
                                     </Form>
-                                </Col>
-                            </Row>
+                                </div>
+                            </div>
                         </Col>
                     </Row>
                 </div>
-            </>
+            </div>
+        </>
         );
     };
 };
@@ -205,7 +305,9 @@ class AttorneyPublicProfile extends React.Component {
 const mapStateToProps = (state) => {
     return {
         fetched_attorney: state.attorneyReducer.fetched_attorney,
-        client: state.clientReducer.client
+        client: state.clientReducer.client,
+        reviewErrors: state.reviewReducer.errors,
+        reviewMessage: state.reviewReducer.message
     };
 };
 

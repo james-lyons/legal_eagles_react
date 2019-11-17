@@ -1,24 +1,76 @@
+* {
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+         hyphens: auto;
+}
+
 .attorney-search-page {
     padding-top: 3rem;
 }
 
 .search-results {
     padding: 1rem;
-    margin: 2rem auto;
-    max-height: 70vh;
-    max-width: 70vw;
+    margin: 0 auto;
+    max-height: 75vh;
+    max-width: 80vw;
     overflow-y: auto;
 }
 
+/* ----- Attorney Card ----- */
+
 .attorney-card {
-    padding: 1rem;
-    margin: 1rem 0;
-    min-height: 15rem;
-    background-color: lightgreen;
     overflow-y: auto;
     border: 1px solid black;
 }
 
-.attorney-search-image {
-    max-width: 200px;
+.card-text {
+    margin-bottom: .5rem !important;
+    font-size: 1.2rem;
+}
+
+.card-img-top {
+    padding: .75rem;
+    border-radius: 0 !important;
+}
+
+/* ----- Not logged in message ----- */
+
+.not-logged-in-div {
+    display: table;
+    padding: 1rem;
+    background-color: rgba(255,255,255,.8);
+    margin: 0 auto;
+}
+
+.not-logged-in-h2 {
+    word-break: break-word;
+}
+
+/* ----- Media Queries ----- */
+
+@media screen and (max-width: 767px) {
+
+    .attorney-search-page {
+        padding-top: 1rem;
+    }
+
+    .search-results {
+        height: 55vh;
+    }
+
+    #attorney-div {
+        height: 55vh;
+        overflow-y: auto;
+    }
+
+    .search-results {
+        max-width: 100vw;
+    }
+
+    .not-logged-in-h2 {
+        font-size: 1.5rem;
+    }
 }

@@ -6,6 +6,7 @@ import { clientRegister } from '../../actions/clientActions';
 import AttorneyRegisterModal from '../../components/Auth/Register/AttorneyRegisterModal'
 import ClientRegisterModal from '../../components/Auth/Register/ClientRegisterModal'
 import OptionsModal from '../../components/Auth/Options/OptionsModal';
+import './ModalCss.css'
 
 class Register extends React.Component {
     state = {
@@ -132,7 +133,7 @@ class Register extends React.Component {
         return (
             <>
                 <ButtonToolbar>
-                    <Button variant="primary" onClick = { () => this.setModalShow(true) }>
+                    <Button variant="light" onClick = { () => this.setModalShow(true) }>
                         Register
                     </Button>
 

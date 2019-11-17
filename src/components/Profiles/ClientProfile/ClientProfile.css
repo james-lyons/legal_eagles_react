@@ -19,3 +19,15 @@
     margin-left: 1.25rem;
     margin-right: 1.25rem;
 }
+
+@media screen and (max-width: 1200px) {
+    .client-profile-div {
+        max-width: 65%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .client-profile-div {
+        max-width: 95%;
+    }
+}
