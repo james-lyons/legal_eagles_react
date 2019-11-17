@@ -160,7 +160,7 @@ class AttorneyPublicProfile extends React.Component {
                                 <div className="review-form-section">
                                     <div className="review-form-div">
                                         <h3>Leave a review!</h3>
-                                        { this.props.reviewErrors && this.props.reviewErrors.map((err, i) => (
+                                        { this.props.submitReviewErrors && this.props.submitReviewErrors.map((err, i) => (
                                             <div className="alert alert-danger alert-dismissible fade show"
                                                 style={{ width: '100%' }} role="alert" key={ i }>
                                                 { err.message }
@@ -169,10 +169,10 @@ class AttorneyPublicProfile extends React.Component {
                                                     </button>
                                             </div>
                                             ))}
-                                            { this.props.reviewMessage && 
+                                            { this.props.submitReviewMessage && 
                                                 <div className="alert alert-danger alert-dismissible fade show"
                                                     style={{ width: '100% '}} role="alert">
-                                                    { this.props.reviewMessage }
+                                                    { this.props.submitReviewMessage }
                                                     <button className="close" data-dismiss="alert">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -209,8 +209,10 @@ const mapStateToProps = (state) => {
     return {
         fetched_attorney: state.attorneyReducer.fetched_attorney,
         client: state.clientReducer.client,
+        submitReviewErrors: state.reviewReducer.submitErrors,
+        submitReviewMessage: state.reviewReducer.submitMessage,
         reviewErrors: state.reviewReducer.errors,
-        reviewMessage: state.reviewReducer.message
+        reviewMessage: state.reviewReducer.message,
     };
 };
 

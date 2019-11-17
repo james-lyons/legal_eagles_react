@@ -2,6 +2,8 @@ function reviewReducer(state = {
     review_id: null,
     review_text: null,
     attorneys_id: null,
+    submitErrors: [],
+    submitMessage: "",
     errors: [],
     message: "",
 }, action) {
@@ -12,8 +14,8 @@ function reviewReducer(state = {
         case "REVIEW_SUBMIT_REJECTED":
             return {
                 ...state,
-                errors: action.payload.errors,
-                message: action.payload.message
+                submitErrors: action.payload.errors,
+                submitMessage: action.payload.message
             };
             
         case "REVIEW_EDIT_FULFILLED":
