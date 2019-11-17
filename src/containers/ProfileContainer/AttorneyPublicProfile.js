@@ -220,5 +220,4 @@ export default connect(mapStateToProps,
         submitReview,
         editReview,
         deleteReview
-    })
-    (AttorneyPublicProfile);
+    })(AttorneyPublicProfile);

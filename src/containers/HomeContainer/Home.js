@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { Col, Form, Button } from 'react-bootstrap';
 import { fetchAttorneys } from '../../actions/attorneyActions';
 import './Home.css';
 import './SearchBarComponent.css';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Form, Col, Button, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { fetchAttorneys } from '../../actions/attorneyActions';
 import { fetchAttorneyById } from '../../actions/attorneyActions';
 import { fetchAttorneyByURL} from '../../actions/attorneyActions';
