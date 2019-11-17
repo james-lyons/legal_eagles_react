@@ -15,7 +15,6 @@ class Home extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const currentUser = localStorage.getItem('uid');
         const specialty = this.state.specialty
         const zipcode = this.state.zipcode
         this.props.fetchAttorneys(specialty, zipcode)
@@ -86,7 +85,7 @@ class Home extends React.Component {
                     <div className="home-content">
                         <h4 className="home-h4">Need help finding legal representation? Sign up for a free account and start browsing attorneys in your area, it will only cost a few minutes and you may find just what you need.</h4>
                     </div>
-                    { this.props.results && <Redirect to={{ pathname:'/attorney_search' }} /> }
+                    { <Redirect to={{ pathname:'/attorney_search' }} /> }
                 </div>
             </>
         );
