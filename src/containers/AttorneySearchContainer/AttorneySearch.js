@@ -59,7 +59,6 @@ class AttorneySearch extends React.Component {
                             <p className="card-text">{ attorney.city }, { attorney.state }, { attorney.zipcode }</p>
                             <p className="card-text">Specialty: { attorney.specialty }</p>
                             <p className="card-text">Reviews: { attorney.reviews.length }</p>
-                            <p className="card-text">bio: { attorney.bio }</p>
                         </div>
                     </div>
             </div>

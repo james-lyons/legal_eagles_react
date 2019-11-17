@@ -152,6 +152,7 @@ class AttorneyPublicProfile extends React.Component {
                                 <h4>Name: { this.props.fetched_attorney && this.props.fetched_attorney.name }</h4>
                                 <h4>Specialty: {this.props.fetched_attorney && this.props.fetched_attorney.specialty } law</h4> 
                                 <h4>Location: { this.props.fetched_attorney && this.props.fetched_attorney.city }, { this.props.fetched_attorney && this.props.fetched_attorney.state }, { this.props.fetched_attorney && this.props.fetched_attorney.zipcode }</h4>
+                                <h4>Bio: {this.props.fetched_attorney && this.props.fetched_attorney.bio } law</h4> 
                             </div>
                         </div>
                         { this.props.fetched_attorney && this.props.fetched_attorney.reviews.length && this.reviews() }
