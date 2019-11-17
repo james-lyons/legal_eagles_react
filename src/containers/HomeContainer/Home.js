@@ -36,7 +36,7 @@ class Home extends React.Component {
                                 <div className="inner-form">
                                     <div className="input-field first-wrap">
                                         <select
-                                            class="form-control form-control-md"
+                                            className="form-control form-control-md"
                                             id="specialty"
                                             name="specialty"
                                             onChange={ this.handleChange }
