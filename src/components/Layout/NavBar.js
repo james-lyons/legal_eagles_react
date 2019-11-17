@@ -16,7 +16,7 @@ const NavBar = () => {
             <Navbar collapseOnSelect expand="lg" className="navbar">
                 <Navbar.Brand className="navbar-a" href="/">
                     <span>
-                        <img className="nav-icon" alt="icon"/>
+                        <img className="nav-icon" src="./eagle_icon.png" alt="icon"/>
                     </span>
                     Legal Eagles
                 </Navbar.Brand>
@@ -36,7 +36,7 @@ const NavBar = () => {
             <Navbar collapseOnSelect expand="md" className="navbar">
                 <Navbar.Brand className="navbar-a" href="/">
                     <span>
-                        <img className="nav-icon" alt="icon"/>
+                        <img className="nav-icon" src="./eagle_icon.png" alt="icon"/>
                     </span>
                     Legal Eagles
                 </Navbar.Brand>
@@ -56,7 +56,7 @@ const NavBar = () => {
             <Navbar collapseOnSelect expand="lg" className="navbar">
                 <Navbar.Brand className="navbar-a" href="/">
                     <span>
-                        <img className="nav-icon" alt="icon"/>
+                        <img className="nav-icon" src="./eagle_icon.png" alt="icon"/>
                     </span>
                     Legal Eagles
                 </Navbar.Brand>
