@@ -9,7 +9,6 @@ const attorneyRegister = (data) => {
                 window.location.reload();
             })
             .catch(err => {
-                console.log(err)
                 dispatch({ type: "ATTORNEY_REGISTER_REJECTED", payload: err })
             });
     };
@@ -42,7 +41,7 @@ const attorneyLogout = () => {
             window.location.reload();
         })
         .catch(err => {
-            return { type: "USER_LOGOUT_REJECTED", payload: err };
+            return { type: "USER_LOGOUT_REJECTED", payload: err.response.data };
         });
     return { type: "USER_LOGOUT_FULFILLED" }
 };
@@ -51,10 +50,10 @@ const fetchAttorneyById = (attorney_id) => {
     return function(dispatch) {
         axios.get(`${ API_URL }/attorney/${ attorney_id }`, { withCredentials: true })
             .then(res => {
-                dispatch({type: "FETCH_ATTORNEY_FULFILLED", payload: res.data})
+                dispatch({type: "FETCH_ATTORNEY_FULFILLED", payload: res.data })
             })
             .catch(err => {
-                dispatch({type: "FETCH_ATTORNEY_REJECTED", payload: err})
+                dispatch({type: "FETCH_ATTORNEY_REJECTED", payload: err.response.data })
             });
     };
 };
@@ -63,10 +62,10 @@ const fetchAttorneyByURL = (attorney_url) => {
     return function(dispatch) {
         axios.get(`${ API_URL }/attorney/search/url/${ attorney_url }`, { withCredentials: true })
             .then(res => {
-                dispatch({type: "FETCH_ATTORNEY_FULFILLED", payload: res.data})
+                dispatch({type: "FETCH_ATTORNEY_FULFILLED", payload: res.data })
             })
             .catch(err => {
-                dispatch({type: "FETCH_ATTORNEY_REJECTED", payload: err})
+                dispatch({type: "FETCH_ATTORNEY_REJECTED", payload: err.response.data })
             });
     };
 };
@@ -76,10 +75,10 @@ const fetchAttorneys = (specialty, zipcode) => {
         axios.get(`${ API_URL }/attorney/search`,
             { params: { specialty, zipcode }, withCredentials: true })
                 .then(res => {
-                    dispatch({type: "FETCH_ATTORNEYS_FULFILLED", payload: res.data})
+                    dispatch({type: "FETCH_ATTORNEYS_FULFILLED", payload: res.data })
                 })
                 .catch(err => {
-                    dispatch({type: "FETCH_ATTORNEYS_REJECTED", payload: err})
+                    dispatch({type: "FETCH_ATTORNEYS_REJECTED", payload: err.response.data })
                 });
     };
 };

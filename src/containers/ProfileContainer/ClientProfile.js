@@ -20,10 +20,8 @@ class ClientProfile extends React.Component {
                     name: res.data.data.name,
                     email: res.data.data.email,
                 })
-                console.log(res)
             })
             .catch(err => {
-                console.log(err)
                 this.setState({ errors: err})
             });
     };
@@ -39,8 +37,7 @@ class ClientProfile extends React.Component {
             { withCredentials: true })
                 .then(res => console.log(res))
                 .catch(err => {
-                    console.log(err)
-                    this.setState({ errors: err})
+                    this.setState({ errors: err.response})
                 });
     };
 
@@ -48,7 +45,6 @@ class ClientProfile extends React.Component {
         this.setState({
             [event.target.name]: event.target.value
         });
-        console.log(this.state)
     };
 
     render() {

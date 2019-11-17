@@ -6,7 +6,6 @@ import { fetchAttorneys } from '../../actions/attorneyActions';
 import './Home.css';
 import './SearchBarComponent.css';
 
-
 class Home extends React.Component {
     state = {
         specialty: "",
@@ -27,7 +26,6 @@ class Home extends React.Component {
         this.setState({
             [event.target.name]: event.target.value
         });
-        console.log(this.state)
     };
 
     render() {
